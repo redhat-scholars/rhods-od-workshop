@@ -3,7 +3,7 @@
 
 = Step 3: Notebooks
 
-This section provides a small introduction on how to use Jupyter Notebooks. If you're already at ease with Jupyter, you can xref:04-lp-recognition.adoc[directly head to the next section].
+This section provides a small introduction on how to use Jupyter Notebooks. If you're already at ease with Jupyter, you can xref:04-object-detection.adoc[head to the next section].
 
 == What's a notebook?
 
@@ -46,6 +46,6 @@ image::new_notebook.png[alt text]
 
 * If you want to learn more about notebooks, head to https://jupyter.org/[this page] .
 
-Now that you're more familiar with notebooks, you're ready to xref:04-lp-recognition.adoc[go to the next section.]
+Now that you're more familiar with notebooks, you're ready to xref:04-object-detection.adoc[go to the next section.]
 
 

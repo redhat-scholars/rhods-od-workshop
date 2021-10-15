@@ -9,7 +9,7 @@ You should be logged into *Red Hat OpenShift Data Science*, and be able to see t
 
 image::dashboard.png[alt text]
 
-*Red Hat OpenShift Data Science* brings you on-demand Jupyter Notebooks environments. Don't worry if you've never used notebooks before as this workshop will start with a small tutorial on what they are and how to use them.
+*Red Hat OpenShift Data Science* brings you on-demand Jupyter Notebook environments. Don't worry if you've never used notebooks before as this workshop will start with a small tutorial on what they are and how to use them.
 
 * Now that you are logged into to *Red Hat OpenShift Data Science*, click on the "Launch" link on the JupyterHub card:
 
@@ -20,7 +20,7 @@ If it's the first time you're launching Jupyter, you will be sent to a page that
 Once you have authorized access, you will be taken to the JupyterHub "Spawner Options" page.
 
 * From the "Start a notebook server" page, there are multiple options you can choose from to launch your environment.
- ** For the *Notebook Image* , select *TensorFlow* (`Python v3.8.6, Tensorflow==2.4.1, CUDA 11.0.3`), as this is the flavor of notebook we want to use. It includes the TensorFlow library, which is used to do image recognition.
+ ** For the *Notebook Image* , select *TensorFlow* (`Python v3.8.6, Tensorflow v2.4.1`), as this is the flavor of notebook we want to use. It includes the TensorFlow library, which is used to do object detection.
  ** From the *Container size* dropdown, select `Default`.
  ** At the bottom of the page you can now click on the *Start Server* button:
 

@@ -7,8 +7,14 @@
 
 Welcome!
 
-In this introductory workshop, you'll learn how to use *Red Hat OpenShift Data Science* to recognize objects in images. 
+In this workshop, you'll learn how AI/ML enables us to identify objects in images. 
 
-And all of this without having to install anything on your own computer, thanks to *Red Hat OpenShift Data Science*!
+You will: 
+
+* use Jupyter Notebooks TensorFlow to explore a pre-trained object detection model
+* use source-to-image (s2i) to serve the model as a Flask App
+* see how ...
+
+And all of this without having to install anything on your own computer, thanks to *Red Hat OpenShift Data Science* and *Red Hat OpenShift Streams for Apache Kafka*. 
 
 If you're ready,  xref:01-start-jupyter.adoc[let's start!]

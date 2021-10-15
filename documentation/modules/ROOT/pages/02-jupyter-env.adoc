@@ -28,11 +28,11 @@ image::clone_start.png[alt text]
 
 * It takes a few seconds, after which you can double-click and navigate to the newly-created folder, `object-detection-rest`:
 
-image::lp_folder_click.png[alt text]
+image::od_folder_click.png[alt text]
 
 '''
 
-image::lp_folder.png[alt text]
+image::od_folder.png[alt text]
 
 xref:03-notebooks.adoc[Ready? Let's go to the next section.]
 
