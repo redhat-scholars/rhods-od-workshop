@@ -13,15 +13,15 @@ Some explanations first:
 * To use this code as a function you can call, we just added a function called `predict` that takes a string as an input, the name of the picture, does the recognition, and sends back the result. Open the file directly in JupyterLab, see for yourself, you should recognize our previous code, with this new function added.
 * There are other files in the folder that are used to provide functions to launch a web server that will be used to serve our API.
 
-After these explanations, you are ready to open the file `03_LPR_run_application.ipynb`, and follow the instructions directly in the notebook!
+After these explanations, you are ready to open the file `2_predict.ipynb`, to see how we extract the code needed for the `prediction.py` file. Then, launch notebooks `3_run_flask.ipynb` and `4_test_flask.ipynb` and follow the instructions directly in the notebooks! 
 
-image::lpr_run.png[alt text]
+image::od_run.png[alt text]
 
-You'll first launch the Server:
+You'll first launch the Server in notebook `3_run_flask.ipynb`:
 
 image::launch_server.png[alt text]
 
-Then query the API:
+Then query the API from notebok `4_test_flask.ipynb`:
 
 image::query_api.png[alt text]
 
