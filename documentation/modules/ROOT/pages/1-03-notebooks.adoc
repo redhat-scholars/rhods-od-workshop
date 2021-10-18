@@ -1,5 +1,5 @@
 :doctype: book
-:nav_order: 3
+
 
 = Step 3: Notebooks
 
@@ -46,6 +46,6 @@ image::new_notebook.png[alt text]
 
 * If you want to learn more about notebooks, head to https://jupyter.org/[this page] .
 
-Now that you're more familiar with notebooks, you're ready to xref:04-object-detection.adoc[go to the next section.]
+Now that you're more familiar with notebooks, you're ready to xref:1-04-object-detection.adoc[go to the next section.]
 
 

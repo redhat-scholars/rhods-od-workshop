@@ -1,0 +1,6 @@
+:doctype: book
+
+
+= Exploring Kafka from Jupyter Notebooks
+
+Once you're finished, you can come back here and xref:3-03-create-secret.adoc[head to the next section.]

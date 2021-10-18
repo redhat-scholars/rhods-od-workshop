@@ -1,0 +1,4 @@
+
+:doctype: book
+
+= Create a Secret for Kafka Credentials

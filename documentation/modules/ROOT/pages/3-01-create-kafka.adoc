@@ -1,0 +1,6 @@
+:doctype: book
+
+
+= Creating a Kafka Instance
+
+Once you're finished, you can come back here and xref:3-02-explore-kafka.adoc[head to the next section.]

@@ -1,0 +1,6 @@
+:doctype: book
+
+
+= Calling the API from an Application
+
+Once you're finished, you can come back here and xref:3-01-create-kafka.adoc[head to the next section.]

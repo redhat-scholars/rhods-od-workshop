@@ -1,5 +1,5 @@
 :doctype: book
-:nav_order: 3
+
 
 = Step 4: Object Detection
 
@@ -13,6 +13,6 @@ At the end of the notebook, it will look like this:
 
 image::od_result.png[alt text]
 
-Once you're finished, you can come back here and xref:05-model-api.adoc[head to the next section.]
+Once you're finished, you can come back here and xref:1-05-model-api.adoc[head to the next section.]
 
 

@@ -1,5 +1,5 @@
 :doctype: book
-:nav_order: 2
+
 
 = Step 2: The Jupyter environment
 
@@ -34,6 +34,6 @@ image::od_folder_click.png[alt text]
 
 image::od_folder.png[alt text]
 
-xref:03-notebooks.adoc[Ready? Let's go to the next section.]
+xref:1-03-notebooks.adoc[Ready? Let's go to the next section.]
 
 

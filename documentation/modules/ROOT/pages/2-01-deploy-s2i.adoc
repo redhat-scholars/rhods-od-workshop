@@ -1,11 +1,10 @@
 :doctype: book
-:nav_order: 3
 
-= Step 6: Packaging our application
 
-Now that the application code is working, we're ready to package it as a container image, and have it running directly into OpenShift as a service you will be able to call from any other application.
+= Deploying as Source To Image Application
 
-NOTE: the application code is available in the same repo we've been using before, but in the `app` branch. It is the same content as we had in our notebooks, except that instead of passing an image name to the prediction function, we will be able to directly upload any image!
+Now that the application code is working, we're ready to build it as a container image, and have it running directly into OpenShift as a service you will be able to call from any other application.
+
 
 == Building the application inside OpenShift
 
@@ -53,6 +52,6 @@ image::detail_panel.png[alt text]
 
 image::route.png[alt text]
 
-Once you're finished, you can come back here and xref:07-testing-app.adoc[head to the next section.]
+Once you're finished, you can come back here and xref:2-02-testing-deployment.adoc[head to the next section.]
 
 

@@ -1,7 +1,7 @@
 :doctype: book
-:nav_order: 3
 
-= Step 7: Testing the application
+
+= Testing the Deployed API
 
 == App Status
 
@@ -45,6 +45,6 @@ image::car_send_image.png[alt text]
 
 image::car_send_image_result.png[alt text]
 
-Once you're finished, you can come back here and xref:08-conclusion.adoc[head to the next section.]
+Once you're finished, you can come back here and xref:2-03-calling-from-application.adoc[head to the next section.]
 
 

@@ -1,5 +1,5 @@
 :doctype: book
-:nav_order: 3
+
 
 = Step 5: Packaging the model as an API
 
@@ -25,6 +25,6 @@ Then query the API from notebok `4_test_flask.ipynb`:
 
 image::query_api.png[alt text]
 
-Once you're finished, you can come back here and xref:06-packaging-app.adoc[head to the next section.]
+Once you're finished, you can come back here and xref:2-01-deploy-s2i.adoc[head to the next section.]
 
 

@@ -1,7 +1,15 @@
-* xref:01-start-jupyter.adoc[1. Starting a Jupyter environment]
-* xref:02-jupyter-env.adoc[2. The Jupyter environment]
-* xref:03-notebooks.adoc[3. Notebooks]
-* xref:04-object-detection.adoc[4. Object Detection]
-* xref:05-model-api.adoc[5. Packaging the model as an API]
-* xref:06-packaging-app.adoc[6. Packaging our application]
-* xref:07-testing-app.adoc[7. Testing the application]
+* 1. Notebooks
+** xref:1-01-start-jupyter.adoc[1. Starting a Jupyter environment]
+** xref:1-02-jupyter-env.adoc[2. The Jupyter environment]
+** xref:1-03-notebooks.adoc[3. Notebooks]
+** xref:1-04-object-detection.adoc[4. Object Detection]
+** xref:1-05-model-api.adoc[5. Serving the model as an API]
+* 2. Serving with S2I
+** xref:2-01-deploy-s2i.adoc[1. Deploy with Source to Image]
+** xref:2-02-testing-deployment.adoc[2. Testing the Deployment]
+** xref:2-03-calling-from-application.adoc[2. Calling from an Application]
+* 3. Working with Kafka
+** xref:3-01-create-kafka.adoc[1. Create a Kafka Queue]
+** xref:3-02-explore-kafka.adoc[2. Explore Kafka in a Notebook]
+** xref:3-03-create-secret.adoc[3. Create a Secret to Connect]
+** xref:3-04-kakfa-consumer.adoc[4. Deploy a Kafka Consumer]
