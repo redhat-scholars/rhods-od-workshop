@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Red Hat OpenShift Data Science Workshop - Object Detection :: Object Detection Workshop</title>
-    <link rel="canonical" href="https://rh-aiservices-bu.github.io/od-workshop/od-workshop/index.html">
-    <link rel="next" href="1-01-start-jupyter.html">
+    <title>Testing the Deployed API :: Object Detection Workshop</title>
+    <link rel="canonical" href="https://rh-aiservices-bu.github.io/od-workshop/od-workshop/2-02-testing-deployment.html">
+    <link rel="prev" href="2-01-deploy-s2i.html">
+    <link rel="next" href="2-03-calling-from-application.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -78,7 +79,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="2-02-testing-deployment.html">2. Testing the Deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -115,53 +116,108 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Object Detection Workshop</a></li>
-    <li><a href="index.html">Red Hat OpenShift Data Science Workshop - Object Detection</a></li>
+    <li>2. Serving with S2I</li>
+    <li><a href="2-02-testing-deployment.html">2. Testing the Deployment</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/rh-aiservices-bu/od-workshop/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rh-aiservices-bu/od-workshop/edit/master/documentation/modules/ROOT/pages/2-02-testing-deployment.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Red Hat OpenShift Data Science Workshop - Object Detection</h1>
-<div class="sect1 text-center strong">
-<h2>Introduction</h2>
+<h1 class="page">Testing the Deployed API</h1>
+<div class="sect1">
+<h2 id="_app_status"><a class="anchor" href="#_app_status"></a>App Status</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Welcome!</p>
+<p>You now have an application listening at the route that was created during the deployment. You can test it but simply clicking on the route link, or copy/paste it in your browser:</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/app_status.png" alt="alt text">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_uploading_images"><a class="anchor" href="#_uploading_images"></a>Uploading images</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>In this workshop, you&#8217;ll learn how AI/ML enables us to identify objects in images.</p>
+<p>As our application is now a REST API endpoint, there are multiple ways to upload images to it. Here are a few.
+<em>Note</em>: as our prediction function is waiting for a json payload with a base64 encoded image, we must do this encoding first.</p>
 </div>
+<div class="sect2">
+<h3 id="_curl_on_linux_or_mac_with_bashzsh"><a class="anchor" href="#_curl_on_linux_or_mac_with_bashzsh"></a>CURL on Linux or Mac with bash/zsh</h3>
 <div class="paragraph">
-<p>You will:</p>
+<p>From anywhere you have an example image like <code>car.jpg</code> (replace with the right name in the command, as well as the Route with <code>/predictions</code> at the end):</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre>(echo -n '{"image": "'; base64 car.jpg; echo '"}') | curl -H "Content-Type: application/json" -d @- http://licence-plate-workshop-git-lpr-workshop.apps.rhods-test.rqdu.p1.openshiftapps.com/predictions</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_invoke_webrequest_on_windows_with_powershell"><a class="anchor" href="#_invoke_webrequest_on_windows_with_powershell"></a>Invoke-WebRequest on Windows with Powershell</h3>
+<div class="paragraph">
+<p>From anywhere you have an example image like <code>car.jpg</code> (replace with the complete path and name in the command, as well as the Route with <code>/predictions</code> at the end):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Write-Output ('{"image": "' + ([Convert]::ToBase64String([IO.File]::ReadAllBytes('C:\Users\Guillaume\Downloads\car.jpg'))) + '"}') | iwr -Uri http://licence-plate-workshop-git-lpr-workshop.apps.rhods-test.rqdu.p1.openshiftapps.com/predictions -Method 'POST' -ContentType: 'application/json' | Select-Object -Expand Content</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_from_a_notebook"><a class="anchor" href="#_from_a_notebook"></a>From a notebook</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>use Jupyter Notebooks TensorFlow to explore a pre-trained object detection model</p>
+<p>Open the notebook named <code>05_Send_image.ipynb</code></p>
 </li>
 <li>
-<p>use source-to-image (s2i) to serve the model as a Flask App</p>
+<p>Upload an image in your environment</p>
 </li>
 <li>
-<p>see how &#8230;&#8203;</p>
+<p>In the first cell, replace the placeholders with your:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Image path and name.</p>
+</li>
+<li>
+<p>Route to the service.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>And all of this without having to install anything on your own computer, thanks to <strong>Red Hat OpenShift Data Science</strong> and <strong>Red Hat OpenShift Streams for Apache Kafka</strong>.</p>
+</li>
+<li>
+<p>Run the cells and see the result!</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/car_send_image.png" alt="alt text">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/car_send_image_result.png" alt="alt text">
+</div>
 </div>
 <div class="paragraph">
-<p>If you&#8217;re ready,  <a href="#01-start-jupyter.adoc" class="page unresolved">let&#8217;s start!</a></p>
+<p>Once you&#8217;re finished, you can come back here and <a href="2-03-calling-from-application.html" class="page">head to the next section.</a></p>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a></span>
+  <span class="prev"><a href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a></span>
+  <span class="next"><a href="2-03-calling-from-application.html">2. Calling from an Application</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

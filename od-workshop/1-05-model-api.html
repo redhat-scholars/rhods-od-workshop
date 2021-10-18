@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Red Hat OpenShift Data Science Workshop - Object Detection :: Object Detection Workshop</title>
-    <link rel="canonical" href="https://rh-aiservices-bu.github.io/od-workshop/od-workshop/index.html">
-    <link rel="next" href="1-01-start-jupyter.html">
+    <title>Step 5: Packaging the model as an API :: Object Detection Workshop</title>
+    <link rel="canonical" href="https://rh-aiservices-bu.github.io/od-workshop/od-workshop/1-05-model-api.html">
+    <link rel="prev" href="1-04-object-detection.html">
+    <link rel="next" href="2-01-deploy-s2i.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -66,7 +67,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="1-04-object-detection.html">4. Object Detection</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="1-05-model-api.html">5. Serving the model as an API</a>
   </li>
 </ul>
@@ -115,53 +116,75 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Object Detection Workshop</a></li>
-    <li><a href="index.html">Red Hat OpenShift Data Science Workshop - Object Detection</a></li>
+    <li>1. Notebooks</li>
+    <li><a href="1-05-model-api.html">5. Serving the model as an API</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/rh-aiservices-bu/od-workshop/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rh-aiservices-bu/od-workshop/edit/master/documentation/modules/ROOT/pages/1-05-model-api.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Red Hat OpenShift Data Science Workshop - Object Detection</h1>
-<div class="sect1 text-center strong">
-<h2>Introduction</h2>
+<h1 class="page">Step 5: Packaging the model as an API</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Welcome!</p>
+<p>In the previous section, we learned how to create the code that will be able to extract the number from a given licence plate. But of course we cannot use a notebook directly like this in a production environment.</p>
 </div>
 <div class="paragraph">
-<p>In this workshop, you&#8217;ll learn how AI/ML enables us to identify objects in images.</p>
+<p>So now we will learn how to <strong>package</strong> this code as an <strong>API</strong> that you can directly query from other applications.</p>
 </div>
 <div class="paragraph">
-<p>You will:</p>
+<p>Some explanations first:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>use Jupyter Notebooks TensorFlow to explore a pre-trained object detection model</p>
+<p>The code that we wrote in the notebook has been repackaged as a single Python file, <code>prediction.py</code>. Basically, it&#8217;s just the code that was in all the cells of the notebook that was put together inside a single file.</p>
 </li>
 <li>
-<p>use source-to-image (s2i) to serve the model as a Flask App</p>
+<p>To use this code as a function you can call, we just added a function called <code>predict</code> that takes a string as an input, the name of the picture, does the recognition, and sends back the result. Open the file directly in JupyterLab, see for yourself, you should recognize our previous code, with this new function added.</p>
 </li>
 <li>
-<p>see how &#8230;&#8203;</p>
+<p>There are other files in the folder that are used to provide functions to launch a web server that will be used to serve our API.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>And all of this without having to install anything on your own computer, thanks to <strong>Red Hat OpenShift Data Science</strong> and <strong>Red Hat OpenShift Streams for Apache Kafka</strong>.</p>
+<p>After these explanations, you are ready to open the file <code>2_predict.ipynb</code>, to see how we extract the code needed for the <code>prediction.py</code> file. Then, launch notebooks <code>3_run_flask.ipynb</code> and <code>4_test_flask.ipynb</code> and follow the instructions directly in the notebooks!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/od_run.png" alt="alt text">
+</div>
 </div>
 <div class="paragraph">
-<p>If you&#8217;re ready,  <a href="#01-start-jupyter.adoc" class="page unresolved">let&#8217;s start!</a></p>
+<p>You&#8217;ll first launch the Server in notebook <code>3_run_flask.ipynb</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/launch_server.png" alt="alt text">
+</div>
+</div>
+<div class="paragraph">
+<p>Then query the API from notebok <code>4_test_flask.ipynb</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/query_api.png" alt="alt text">
+</div>
+</div>
+<div class="paragraph">
+<p>Once you&#8217;re finished, you can come back here and <a href="2-01-deploy-s2i.html" class="page">head to the next section.</a></p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a></span>
+  <span class="prev"><a href="1-04-object-detection.html">4. Object Detection</a></span>
+  <span class="next"><a href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
