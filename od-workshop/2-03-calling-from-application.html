@@ -83,7 +83,7 @@
     <a class="nav-link" href="2-02-testing-deployment.html">2. Testing the Deployment</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="2-03-calling-from-application.html">2. Calling from an Application</a>
+    <a class="nav-link" href="2-03-calling-from-application.html">3. Calling from an Application</a>
   </li>
 </ul>
   </li>
@@ -121,7 +121,7 @@
   <ul>
     <li><a href="index.html">Object Detection Workshop</a></li>
     <li>2. Serving with S2I</li>
-    <li><a href="2-03-calling-from-application.html">2. Calling from an Application</a></li>
+    <li><a href="2-03-calling-from-application.html">3. Calling from an Application</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/rh-aiservices-bu/od-workshop/edit/master/documentation/modules/ROOT/pages/2-03-calling-from-application.adoc">Edit this Page</a></div>
@@ -132,7 +132,289 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Once you&#8217;re finished, you can come back here and <a href="3-01-create-kafka.html" class="page">head to the next section.</a></p>
+<p>Now that we have a working API serving predictions, we can call it from an application.</p>
+</div>
+<div class="paragraph">
+<p>Until now, we have been using a route which exposes the service externally.  Sometimes, services don&#8217;t expose themselves outside the cluster.  We&#8217;ll deploy an application to the same project and can refer to it using its internal service name.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verify_your_service_url"><a class="anchor" href="#_verify_your_service_url"></a>Verify your service URL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you followed previous naming instructions, your service should be <code><a href="http://object-detection-rest:8080" class="bare">http://object-detection-rest:8080</a></code>.  You can verify your rest service&#8217;s name and port on the service detail screen.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>From the project topology, open your deployment&#8217;s detail screen.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/topology-rest-service.png" alt="alt text" width="640">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Then click on the service and view the name and port.  Your internal URL will be <code><a href="http://&lt;service-name&gt;:&lt;service-port&gt" class="bare">http://&lt;service-name&gt;:&lt;service-port&gt</a>;</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/rest-service-name-port.png" alt="alt text" width="500">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can also call the service from elsewhere on your cluster, including your Jupyter notebook by using the fully addressed name, <code><a href="http://&lt;service-name&gt;.&lt;namespace&gt;.svc:&lt;service-port&gt" class="bare">http://&lt;service-name&gt;.&lt;namespace&gt;.svc:&lt;service-port&gt</a>;</code>, which in this case would be <code><a href="http://object-detection-rest.user-dev.svc:8080" class="bare">http://object-detection-rest.user-dev.svc:8080</a></code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_the_front_end_application"><a class="anchor" href="#_create_the_front_end_application"></a>Create the Front End Application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will create the test app the exact same way we created the REST service, but instead, we&#8217;ll be creating an <code>object-detection-app</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>As with our previous deployment, use the Developer View and choose the same project.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/dev-view.png" alt="alt text">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/select-project.png" alt="alt text" width="480">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>From the <code>+Add</code> menu, click on the <code>From Git</code> tile:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/from-git.png" alt="alt text" width="640">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_the_application"><a class="anchor" href="#_configure_the_application"></a>Configure the Application</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_set_the_git_repo"><a class="anchor" href="#_set_the_git_repo"></a>Set the Git Repo</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Git Repo URL</code>field, enter: <code>https://github.com/rh-aiservices-bu/object-detection-app.git</code>. Make sure you&#8217;re deploying the <code>object-detection-<strong>app</strong></code>, not the "rest" repo. If you&#8217;ve entered the correct repository, the Node.js builder image will be selected since this front end application was written in Node.js.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://github.com/rh-aiservices-bu/object-detection-app.git</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/git-repo-app.png" alt="alt text" width="640">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_set_the_app_name"><a class="anchor" href="#_set_the_app_name"></a>Set the App Name</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>By default, our new deployment will be added to the existing application <code>object-detection</code> we created during our previous app.  We can leave that as is.  Instead of <code>object-detection-app-git</code>, we can change the <strong>Name</strong> to  <code>object-detection-app</code>, but it&#8217;s not required.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/general-app.png" alt="alt text" width="640">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configure_a_secure_route"><a class="anchor" href="#_configure_a_secure_route"></a>Configure a Secure Route</h3>
+<div class="paragraph">
+<p>Our application will access device cameras, so it will require a secure, https route.  We need to configure this application to use a secure route for access.</p>
+</div>
+<div class="paragraph">
+<p>We can leave the default resource as <strong>Deployment</strong>, but we need to configure some other options.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Under <strong>Advanced Options</strong>, open the <strong>Show advanced Routing options</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-app-route.png" alt="alt text" width="640">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set the route options</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Under <strong>Security</strong>, select <strong>Secure Route</strong>.</p>
+</li>
+<li>
+<p>For <strong>TLS termination</strong>, choose <strong>Edge</strong>.</p>
+</li>
+<li>
+<p>For <strong>Insecure traffic</strong>, choose <strong>Redirect</strong>.</p>
+</li>
+<li>
+<p>Leave the other advanced routing fields as they are.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-app-route-adv.png" alt="alt text" width="640">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configure_the_deployment_environment_variables"><a class="anchor" href="#_configure_the_deployment_environment_variables"></a>Configure the Deployment Environment Variables</h3>
+<div class="paragraph">
+<p>The application needs to know where to send its images for predictions. Earlier, we confirmed the service URL of the <code>object-detection-rest</code> deployment.  We&#8217;ll use that value and add <code>/predictions</code>.  This will tell our front end application where to send the images by setting the variable <code>OBJECT_DETECTION_URL</code> to <code><a href="http://&lt;service-name&gt;:&lt;service-port/predictions" class="bare">http://&lt;service-name&gt;:&lt;service-port/predictions</a></code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Under Advanced options, open the <strong>Deployment</strong>  options.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-app-deployment.png" alt="alt text" width="640">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Under <strong>Environment variables (runtime only)</strong>, create a Name / Value pair.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Name</strong> = <code>OBJECT_DETECTION_URL</code></p>
+</li>
+<li>
+<p><strong>Value</strong> = <code><a href="http://&lt;service-name&gt;:&lt;service-port/predictions" class="bare">http://&lt;service-name&gt;:&lt;service-port/predictions</a></code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">OBJECT_DETECTION_URL</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">http://object-detection-rest:8080/predictions</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you named the rest services <code>object-detection-rest</code>, this value should be <code><a href="http://object-detection-rest:8080/predictions" class="bare">http://object-detection-rest:8080/predictions</a></code>.  If not, used the observed value.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-app-env-var.png" alt="alt text" width="640">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create"><a class="anchor" href="#_create"></a>Create</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>If you continue to scroll down, you will see that everything is automatically selected to create a deployment of your application, and to create a Route through which you will be able to access it. Everything is ready, so you can click on <code>Create</code>:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-button.png" alt="alt text">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_checking_your_application"><a class="anchor" href="#_checking_your_application"></a>Checking your Application</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You can see a new application has been created and is currently building.  Like before, wait for the build to complete and pods to deploy.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/topology-app.png" alt="alt text" width="640">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After the application is deployed click on the route to launch the application.  Try it out from your laptop or phone with a camera.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/app-screenshot.png" alt="alt text" width="640">
+</div>
+</div>
+<div class="paragraph">
+<p>Next, we can explore working with streaming data.  <a href="3-01-create-kafka.html" class="page">Head to the next section.</a></p>
 </div>
 </div>
 </div>

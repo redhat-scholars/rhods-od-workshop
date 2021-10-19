@@ -83,7 +83,7 @@
     <a class="nav-link" href="2-02-testing-deployment.html">2. Testing the Deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="2-03-calling-from-application.html">2. Calling from an Application</a>
+    <a class="nav-link" href="2-03-calling-from-application.html">3. Calling from an Application</a>
   </li>
 </ul>
   </li>
@@ -132,12 +132,12 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now that the application code is working, we&#8217;re ready to build it as a container image, and have it running directly into OpenShift as a service you will be able to call from any other application.</p>
+<p>Now that the application code is working, we&#8217;re ready to build it as a container image, create an OpenShift deployment, and have it running as a service you will be able to call from any other application.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_building_the_application_inside_openshift"><a class="anchor" href="#_building_the_application_inside_openshift"></a>Building the application inside OpenShift</h2>
+<h2 id="_add_an_application_from_git"><a class="anchor" href="#_add_an_application_from_git"></a>Add an Application from Git</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -148,19 +148,19 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/dev_view.png" alt="alt text">
+<img src="_images/s2i/dev-view.png" alt="alt text">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Make sure you are in the right project that was assigned to you:</p>
+<p>Make sure you have selected the correct project for your application:</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/select_project.png" alt="alt text">
+<img src="_images/s2i/select-project.png" alt="alt text" width="480">
 </div>
 </div>
 <div class="ulist">
@@ -172,45 +172,73 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/from_git.png" alt="alt text">
+<img src="_images/s2i/from-git.png" alt="alt text" width="640">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_the_application"><a class="anchor" href="#_configure_the_application"></a>Configure the Application</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_set_the_git_repo"><a class="anchor" href="#_set_the_git_repo"></a>Set the Git Repo</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>In the <code>Git Repo URL</code>field, enter: <code>https://github.com/rh-aiservices-bu/object-detection-rest.git</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://github.com/rh-aiservices-bu/object-detection-rest.git</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/git-repo.png" alt="alt text" width="640">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>In the <code>Git Repo URL</code>field, enter: <code>https://github.com/rh-aiservices-bu/licence-plate-workshop.git</code></p>
+<p>Leave the other builder image selection to the default. You will see that OpenShift automatically recognized that our repo contains Python code, and that the right base image has been selected. Pretty neat, eh?!</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/git_repo.png" alt="alt text">
+<img src="_images/s2i/builder.png" alt="alt text" width="640">
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_customize_the_app_names"><a class="anchor" href="#_customize_the_app_names"></a>Customize the App Names</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Don&#8217;t miss this step!</strong> Click on <code>Show advanced Git options</code>, and in the <code>Git reference</code> field, enter <code>main</code> (this is the branch to use in our github project):</p>
+<p>Let&#8217;s customize the name of our application.  Instead of <code>object-detection-rest-git-app</code> and <code>object-detection-rest-git</code>, let&#8217;s change the <strong>Application name</strong> to <code>object-detection</code> and the <strong>Name</strong> to  <code>object-detection-rest</code>.  Later when we call our service internally from the same project, we&#8217;ll use this name and the service port, <code><a href="http://object-detection-rest:8080" class="bare">http://object-detection-rest:8080</a></code>.</p>
 </li>
 </ul>
 </div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">object-detection</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">object-detection-rest</code></pre>
+</div>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/app_branch.png" alt="alt text">
+<img src="_images/s2i/general.png" alt="alt text">
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Leave the other fields as default and scroll down. You will see that OpenShift automatically recognized that our repo contains Python code, and that the right base image has been selected. Pretty neat, eh?!</p>
-</li>
-</ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/build_image.png" alt="alt text">
-</div>
-</div>
+<div class="sect2">
+<h3 id="_create"><a class="anchor" href="#_create"></a>Create</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -220,9 +248,15 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/create_app.png" alt="alt text">
+<img src="_images/s2i/create-app.png" alt="alt text" width="640">
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_checking_your_application"><a class="anchor" href="#_checking_your_application"></a>Checking your Application</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -232,43 +266,31 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/build_app.png" alt="alt text">
+<img src="_images/s2i/topology.png" alt="alt text" width="640">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The automated building process will take a few minutes. Some Alerts may appear if OpenShift tries to deploy while the build is still running, but that&#8217;s OK. Then OpenShift will deploy the application (rollout), and in the topolody view you should obtain something like this:</p>
+<p>Click on the deployment to open a detail panel on the right.</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/topology_view.png" alt="alt text">
+<img src="_images/s2i/topology-rest-building.png" alt="alt text" width="640">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Just click on the application line to open a detail panel on the right:</p>
+<p>The automated building process will take a few minutes. Some alerts (such as ImgPullBackOff) may appear while the first build is still running, but that&#8217;s OK. Then OpenShift will deploy the application (rollout).  When it&#8217;s complete you can see the build is complete and the pod is running.</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/detail_panel.png" alt="alt text">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>If you scroll down on the detail panel, you will see the route that was created for your application. This is the URL you will use to send images:</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/route.png" alt="alt text">
+<img src="_images/s2i/topology-rest-complete.png" alt="alt text" width="640">
 </div>
 </div>
 <div class="paragraph">
