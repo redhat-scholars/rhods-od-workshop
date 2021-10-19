@@ -1,6 +1,122 @@
-:doctype: book
-
-
 = Calling the API from an Application
 
-Once you're finished, you can come back here and xref:3-01-create-kafka.adoc[head to the next section.]
+include::_attributes.adoc[]
+
+Now that we have a working API serving predictions, we can call it from an application.
+
+Until now, we have been using a route which exposes the service externally.  Sometimes, services don't expose themselves outside the cluster.  We'll deploy an application to the same project and can refer to it using its internal service name.
+
+== Verify your service URL
+
+If you followed previous naming instructions, your service should be `http://object-detection-rest:8080`.  You can verify your rest service's name and port on the service detail screen.  
+
+* From the project topology, open your deployment's detail screen.  
+
+image::s2i/topology-rest-service.png[alt text, 640]
+
+* Then click on the service and view the name and port.  Your internal URL will be `http://<service-name>:<service-port>`
+
+image::s2i/rest-service-name-port.png[alt text, 500]
+
+NOTE: You can also call the service from elsewhere on your cluster, including your Jupyter notebook by using the fully addressed name, `http://<service-name>.<namespace>.svc:<service-port>`, which in this case would be `http://object-detection-rest.user-dev.svc:8080`.
+
+== Create the Front End Application
+
+We will create the test app the exact same way we created the REST service, but instead, we'll be creating an `object-detection-app` 
+
+* As with our previous deployment, use the Developer View and choose the same project.
+
+image::s2i/dev-view.png[alt text]
+
+image::s2i/select-project.png[alt text, 480]
+
+* From the `+Add` menu, click on the `From Git` tile:
+
+image::s2i/from-git.png[alt text, 640]
+
+== Configure the Application
+
+=== Set the Git Repo
+
+* ``Git Repo URL``field, enter: `+https://github.com/rh-aiservices-bu/object-detection-app.git+`. Make sure you're deploying the `object-detection-*app*`, not the "rest" repo. If you've entered the correct repository, the Node.js builder image will be selected since this front end application was written in Node.js.
+
+[.lines_space]
+[.console-input]
+[source,text]
+----
+https://github.com/rh-aiservices-bu/object-detection-app.git
+----
+
+image::s2i/git-repo-app.png[alt text, 640]
+
+=== Set the App Name
+
+* By default, our new deployment will be added to the existing application `object-detection` we created during our previous app.  We can leave that as is.  Instead of `object-detection-app-git`, we can change the *Name* to  `object-detection-app`, but it's not required.
+
+image::s2i/general-app.png[alt text, 640]
+
+=== Configure a Secure Route
+Our application will access device cameras, so it will require a secure, https route.  We need to configure this application to use a secure route for access.
+
+We can leave the default resource as *Deployment*, but we need to configure some other options.  
+
+* Under *Advanced Options*, open the *Show advanced Routing options*.
+
+image::s2i/create-app-route.png[alt text, 640]
+
+* Set the route options
+** Under *Security*, select *Secure Route*. 
+** For *TLS termination*, choose *Edge*.
+** For *Insecure traffic*, choose *Redirect*.
+** Leave the other advanced routing fields as they are.
+
+image::s2i/create-app-route-adv.png[alt text, 640]
+
+=== Configure the Deployment Environment Variables
+
+The application needs to know where to send its images for predictions. Earlier, we confirmed the service URL of the `object-detection-rest` deployment.  We'll use that value and add `/predictions`.  This will tell our front end application where to send the images by setting the variable `OBJECT_DETECTION_URL` to `http://<service-name>:<service-port/predictions`.
+
+* Under Advanced options, open the *Deployment*  options.
+
+image::s2i/create-app-deployment.png[alt text, 640]
+
+* Under *Environment variables (runtime only)*, create a Name / Value pair. 
+** *Name* = `OBJECT_DETECTION_URL`
+** *Value* = `http://<service-name>:<service-port/predictions`
+
+
+
+[.lines_space]
+[.console-input]
+[source,text]
+----
+OBJECT_DETECTION_URL
+----
+
+[.lines_space]
+[.console-input]
+[source,text]
+----
+http://object-detection-rest:8080/predictions
+----
+NOTE: If you named the rest services `object-detection-rest`, this value should be `http://object-detection-rest:8080/predictions`.  If not, used the observed value.
+
+image::s2i/create-app-env-var.png[alt text, 640]
+
+=== Create
+
+* If you continue to scroll down, you will see that everything is automatically selected to create a deployment of your application, and to create a Route through which you will be able to access it. Everything is ready, so you can click on `Create`:
+
+image::s2i/create-button.png[alt text]
+
+== Checking your Application
+
+* You can see a new application has been created and is currently building.  Like before, wait for the build to complete and pods to deploy.
+
+image::s2i/topology-app.png[alt text, 640]
+
+* After the application is deployed click on the route to launch the application.  Try it out from your laptop or phone with a camera.
+
+image::s2i/app-screenshot.png[alt text, 640]
+
+Next, we can explore working with streaming data.  xref:3-01-create-kafka.adoc[Head to the next section.]

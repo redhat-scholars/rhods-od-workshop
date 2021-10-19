@@ -7,7 +7,7 @@
 * 2. Serving with S2I
 ** xref:2-01-deploy-s2i.adoc[1. Deploy with Source to Image]
 ** xref:2-02-testing-deployment.adoc[2. Testing the Deployment]
-** xref:2-03-calling-from-application.adoc[2. Calling from an Application]
+** xref:2-03-calling-from-application.adoc[3. Calling from an Application]
 * 3. Working with Kafka
 ** xref:3-01-create-kafka.adoc[1. Create a Kafka Queue]
 ** xref:3-02-explore-kafka.adoc[2. Explore Kafka in a Notebook]

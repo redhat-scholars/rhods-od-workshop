@@ -1,9 +1,7 @@
 :doctype: book
-
+= Step 1: Starting a Jupyter environment
 
 xref:index.adoc[Back to the introduction]
-
-= Step 1: Starting a Jupyter environment
 
 You should be logged into *Red Hat OpenShift Data Science*, and be able to see the dashboard, that looks like this:
 
