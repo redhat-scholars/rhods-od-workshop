@@ -12,7 +12,7 @@ image::s2i/topology-route.png[alt text, 480]
 
 You can test it but simply clicking on the route link, or copy/paste it in your browser:
 
-image::s2i/app-status.png[alt text]
+image::s2i/app-status.png[alt text, 640]
 
 == Uploading images
 

@@ -1,6 +1,10 @@
-:doctype: book
-
-
 = Exploring Kafka from Jupyter Notebooks
 
-Once you're finished, you can come back here and xref:3-03-create-secret.adoc[head to the next section.]
+include::_attributes.adoc[]
+
+image::kafka/notebook-spawn.png[alt text, 640]
+
+image::kafka/notebook-clone.png[alt text, 640]
+
+xref:3-03-create-secret.adoc[head to the next section.]
+

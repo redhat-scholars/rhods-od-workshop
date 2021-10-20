@@ -1,6 +1,35 @@
-:doctype: book
-
-
 = Creating a Kafka Instance
 
-Once you're finished, you can come back here and xref:3-02-explore-kafka.adoc[head to the next section.]
+include::_attributes.adoc[]
+
+image::kafka/quickstart.png[alt text, 640]
+
+image::kafka/instances.png[alt text, 640]
+
+image::kafka/instances-create.png[alt text, 640]
+
+image::kafka/instances-actions.png[alt text, 640]
+
+image::kafka/instances-connection.png[alt text, 640]
+
+image::kafka/sa-create.png[alt text, 640]
+
+image::kafka/sa-create-success.png[alt text, 640]
+
+image::kafka/instance-manage-access.png[alt text, 640]
+
+image::kafka/instance-access.png[alt text, 640]
+
+image::kafka/instance-topics.png[alt text, 640]
+
+image::kafka/topic-name.png[alt text, 640]
+
+image::kafka/topic-partitions.png[alt text, 640]
+
+image::kafka/topic-mr.png[alt text, 640]
+
+image::kafka/topic-replicas.png[alt text, 640]
+
+image::kafka/instance-topics-complete.png[alt text, 640]
+
+xref:3-02-explore-kafka.adoc[head to the next section.]
