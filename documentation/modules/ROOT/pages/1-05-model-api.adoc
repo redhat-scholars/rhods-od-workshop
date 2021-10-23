@@ -14,15 +14,15 @@ Some explanations first:
 
 After these explanations, you are ready to open the file `2_predict.ipynb`, to see how we extract the code needed for the `prediction.py` file. Then, launch notebooks `3_run_flask.ipynb` and `4_test_flask.ipynb` and follow the instructions directly in the notebooks! 
 
-image::od_run.png[alt text]
+image::notebooks/od_run.png[alt text]
 
 You'll first launch the Server in notebook `3_run_flask.ipynb`:
 
-image::launch_server.png[alt text]
+image::notebooks/launch_server.png[alt text]
 
 Then query the API from notebok `4_test_flask.ipynb`:
 
-image::query_api.png[alt text]
+image::notebooks/query_api.png[alt text]
 
 Once you're finished, you can come back here and xref:2-01-deploy-s2i.adoc[head to the next section.]
 

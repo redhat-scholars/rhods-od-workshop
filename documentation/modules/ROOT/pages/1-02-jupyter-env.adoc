@@ -8,11 +8,11 @@ In the "file-browser" like window you're in right now, you'll find the files and
 
 * On the left toolbar, click on the Git icon:
 
-image::git_icon.png[alt text]
+image::notebooks/git_icon.png[alt text]
 
 * Then click on *Clone a Repository*:
 
-image::clone_repo.png[alt text]
+image::notebooks/clone_repo.png[alt text]
 
 * Enter git the URL, `https://github.com/rh-aiservices-bu/object-detection-rest.git`, then click *CLONE*:
 
@@ -23,15 +23,15 @@ image::clone_repo.png[alt text]
 https://github.com/rh-aiservices-bu/object-detection-rest.git
 ----
 
-image::clone_start.png[alt text]
+image::notebooks/clone_start.png[alt text]
 
 * It takes a few seconds, after which you can double-click and navigate to the newly-created folder, `object-detection-rest`:
 
-image::od_folder_click.png[alt text]
+image::notebooks/od_folder_click.png[alt text]
 
 '''
 
-image::od_folder.png[alt text]
+image::notebooks/od_folder.png[alt text]
 
 xref:1-03-notebooks.adoc[Ready? Let's go to the next section.]
 
