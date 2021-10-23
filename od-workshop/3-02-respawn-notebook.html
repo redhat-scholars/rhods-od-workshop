@@ -3,10 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>1.3 Notebooks :: Object Detection Workshop</title>
-    <link rel="canonical" href="https://rh-aiservices-bu.github.io/od-workshop/od-workshop/1-03-notebooks.html">
-    <link rel="prev" href="1-02-jupyter-env.html">
-    <link rel="next" href="1-04-object-detection.html">
+    <title>3.2 Exploring Kafka from Jupyter Notebooks :: Object Detection Workshop</title>
+    <link rel="canonical" href="https://rh-aiservices-bu.github.io/od-workshop/od-workshop/3-02-respawn-notebook.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -61,7 +59,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="1-02-jupyter-env.html">2. The Jupyter environment</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="1-03-notebooks.html">3. Notebooks</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -120,129 +118,149 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Object Detection Workshop</a></li>
-    <li>1. Notebooks</li>
-    <li><a href="1-03-notebooks.html">3. Notebooks</a></li>
+    <li><a href="3-02-respawn-notebook.html">3.2 Exploring Kafka from Jupyter Notebooks</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/rh-aiservices-bu/od-workshop/edit/master/documentation/modules/ROOT/pages/1-03-notebooks.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rh-aiservices-bu/od-workshop/edit/master/documentation/modules/ROOT/pages/3-02-respawn-notebook.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">1.3 Notebooks</h1>
-<div id="preamble">
+<h1 class="page">3.2 Exploring Kafka from Jupyter Notebooks</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section provides a small introduction on how to use Jupyter Notebooks. If you&#8217;re already at ease with Jupyter, you can <a href="#04-object-detection.adoc" class="page unresolved">head to the next section</a>.</p>
+<p>Now that we have a working Kafka Instance we can connect to, we can try out sending and receiving messages from a Jupyter notebook.  We&#8217;ll start a notebook and connect to your new Kafka instance.  Then, we&#8217;ll show a different kind of application using the exact same prediction code to consume and produce streaming data.</p>
+</div>
+<div class="paragraph">
+<p>For now, return to Red Hat OpenShift Data Science and navigate to JupyterHub.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_whats_a_notebook"><a class="anchor" href="#_whats_a_notebook"></a>What&#8217;s a notebook?</h2>
+<h2 id="_restarting_a_notebook"><a class="anchor" href="#_restarting_a_notebook"></a>Restarting a Notebook</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>If you&#8217;re notebook is currently running, you might want to restart with a new base image or different settings.  In this case, we need to restart our notebook with our Kafka connection information from the Hub Control Panel (Start a notebook server page).</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>A notebook is an environment where you have <em>cells</em> that can display formatted text, or code.</p>
+<p>Navigate through the menu to <strong>File</strong> &#8594; <strong>Hub Control Panel</strong></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>This is an empty cell:</p>
-</div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/cell.png" alt="alt text">
-</div>
-</div>
-<div class="paragraph">
-<p>And a cell where we have entered some code:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/cell_code.png" alt="alt text">
+<img src="_images/kafka/notebook-hub.png" alt="alt text" width="640">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Code cells contain Python code that can be run interactively. Thats means you can modify the code, then run it. The code will not run on you computer or in the browser, but directly in the environment you are connected to, <strong>Red Hat OpenShift Data Science</strong> in our case.</p>
-</li>
-<li>
-<p>To run a code cell, just select it (click in the cell, or on the left side of it), and click the Run/Play button from the toolbar (you can also press CTRL+Enter to run a cell, or Shift+Enter to run the cell and automatically select the following one).</p>
+<p>Click the <strong>Stop My Server</strong> Button</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>The Run button on the toolbar:</p>
-</div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/run_button.png" alt="alt text">
+<img src="_images/kafka/notebook-spawn-stop.png" alt="alt text" width="640">
 </div>
-</div>
-<div class="paragraph">
-<p>Our cell after pressing Run:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/cell_run.png" alt="alt text">
-</div>
-</div>
-<div class="paragraph">
-<p>As you can see, you have the result of the code that was run in that cell, as well as information on when this particular cell has been run.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>When you save a notebook, the code as well as the results are saved! So you can always reopen it to look at the results without having to run all the program again, while still having access to the code.</p>
+<p>Wait for the Stop My Server button to disappear and then click the <strong>Start My Server</strong> Button</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Notebooks are so named because they are just like a physical <strong>Notebook</strong>: it&#8217;s exactly like if you were taking notes about your experiments (which you will do), along with the code itself, including any parameters you set. You see the output of the experiment inline (this is the result from a cell once it&#8217;s run), along with all the notes you want to take (to do that, switch the cell type from the menu from <code>Code</code> to <code>Markup</code>).</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-spawn-start.png" alt="alt text" width="640">
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_time_to_play"><a class="anchor" href="#_time_to_play"></a>Time to play</h2>
+<h2 id="_starting_a_notebook_to_connect_to_kafka"><a class="anchor" href="#_starting_a_notebook_to_connect_to_kafka"></a>Starting a Notebook to Connect to Kafka</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now that we have covered the basics, just give it a try!</p>
+<p>This should bring you back to the now familar "Start a notebook server" page.  We&#8217;re going to start a notebook with the environment variables necessary to connect to Kafka.  Then we can make sure everything is working before we deploy our AI Application.</p>
+</div>
+<div class="paragraph">
+<p>On the "Start a notebook server" page, enter in the fields.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>In your Jupyter environment (the file explorer-like interface), there is file called <code>0_sanbdbox.ipynb</code>. Double-click on it to launch the notebook (it will open another tab in the content section of the environment). Please feel free to experiment, run the cells, add some more and create functions. You can do what you want - it&#8217;s your environment, and there is no risk of breaking anything or impacting other users. This environment isolation is also a great advantage brought by <strong>Red Hat OpenShift Data Science</strong>.</p>
+<p>Set <strong>Notebook image</strong> to <strong>TensorFlow</strong>.</p>
 </li>
 <li>
-<p>You can also create a new notebook by selecting <code>File</code>-&gt;<code>New</code>-&gt;<code>Notebook</code>from the menu on the top left, then select a Python 3 kernel. This instructs Jupyter that we want to create a new notebook where the code cells will be run using a Python 3 kernel. We could have different kernels, with different languages or versions that we can run into notebooks, but that&#8217;s a story for another time&#8230;&#8203;</p>
+<p>Set <strong>Container size</strong> to <strong>Small</strong></p>
 </li>
 <li>
-<p>You can also create a notebook by simply clicking on the icon in the launcher:</p>
+<p>Add <strong>Environment variables</strong><br>
+To add environment variables click <strong>Add more variables</strong> for each variable and enter the variable info.  Afterwards, to hide the value and save it in a Kubernetes secret, click the secret checkbox. <br>
+Now, add the following three variables with the information you recorded during your Kafka instance creation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Custom Variable</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Variable name: <code>KAFKA_BOOTSTRAP_SERVER</code></p>
+</li>
+<li>
+<p>Variable value: <code>&lt;Kafka Bootstrap server&gt;</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>Custom Variable</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Variable name: <code>KAFKA_USERNAME</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Variable value: <code>&lt;Service Account Client ID&gt;</code></p>
+</li>
+<li>
+<p><code>Custom Variable</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Variable name: <code>KAFKA_PASSWORD</code></p>
+</li>
+<li>
+<p>Variable value: <code>&lt;Service Account Client secret&gt;</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click <strong>Start server</strong></p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/new_notebook.png" alt="alt text">
+<img src="_images/kafka/notebook-spawn.png" alt="alt text" width="640">
 </div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>If you want to learn more about notebooks, head to <a href="https://jupyter.org/">this page</a> .</p>
-</li>
-</ul>
 </div>
 <div class="paragraph">
-<p>Now that you&#8217;re more familiar with notebooks, you&#8217;re ready to <a href="1-04-object-detection.html" class="page">go to the next section.</a></p>
+<p>This will start your noteook server and now you&#8217;re ready to <a href="3-03-explore-kafka.html" class="page">head to the next section.</a></p>
 </div>
 </div>
 </div>
-<nav class="pagination">
-  <span class="prev"><a href="1-02-jupyter-env.html">2. The Jupyter environment</a></span>
-  <span class="next"><a href="1-04-object-detection.html">4. Object Detection</a></span>
-</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
