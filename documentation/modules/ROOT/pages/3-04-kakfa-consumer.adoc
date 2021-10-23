@@ -3,7 +3,7 @@
 image::kafka/create-consumer-git.png[alt text, 640]
 image::kafka/create-consumer-general.png[alt text, 640]
 image::kafka/create-consumer-advanced.png[alt text, 640]
-image::kafka/create-button.png[alt text, 640]
+image::kafka/create-button.png[alt text]
 image::kafka/create-consumer-building.png[alt text, 640]
 
 
