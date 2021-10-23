@@ -1,0 +1,6 @@
+= 3.3 Exploring Kafka from Jupyter Notebooks
+
+include::_attributes.adoc[]
+
+xref:3-04-create-secret.adoc[head to the next section.]
+

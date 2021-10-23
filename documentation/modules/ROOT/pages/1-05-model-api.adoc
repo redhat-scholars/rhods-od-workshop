@@ -1,7 +1,6 @@
-:doctype: book
+= 1.5 Packaging the model as an API
 
-
-= Step 5: Packaging the model as an API
+include::_attributes.adoc[]
 
 In the previous section, we learned how to create the code that will be able to extract the number from a given licence plate. But of course we cannot use a notebook directly like this in a production environment.
 

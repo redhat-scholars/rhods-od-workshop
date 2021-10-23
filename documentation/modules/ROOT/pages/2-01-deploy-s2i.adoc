@@ -1,4 +1,4 @@
-= Deploying as Source To Image Application
+= 2.1 Deploying as Source To Image Application
 
 include::_attributes.adoc[]
 

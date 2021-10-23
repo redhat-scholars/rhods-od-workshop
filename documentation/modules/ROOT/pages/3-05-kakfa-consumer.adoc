@@ -1,4 +1,4 @@
-= Create a Kafka Consumer
+= 3.4 Create a Kafka Consumer
 
 image::kafka/create-consumer-git.png[alt text, 640]
 image::kafka/create-consumer-general.png[alt text, 640]

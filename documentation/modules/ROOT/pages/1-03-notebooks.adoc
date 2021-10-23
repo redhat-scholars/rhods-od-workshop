@@ -1,7 +1,6 @@
-:doctype: book
+= 1.3 Notebooks
 
-
-= Step 3: Notebooks
+include::_attributes.adoc[]
 
 This section provides a small introduction on how to use Jupyter Notebooks. If you're already at ease with Jupyter, you can xref:04-object-detection.adoc[head to the next section].
 

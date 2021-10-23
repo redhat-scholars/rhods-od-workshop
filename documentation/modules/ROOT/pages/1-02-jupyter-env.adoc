@@ -1,7 +1,6 @@
-:doctype: book
+= 1.2 The Jupyter environment
 
-
-= Step 2: The Jupyter environment
+include::_attributes.adoc[]
 
 You are now inside your Jupyter environment. As you can see, it's a web-based environment, but everything you'll do here is in fact happening on the *Red Hat OpenShift Data Science* cluster. This means that without having to install and maintain anything on your own computer, and without disposing of lots of local resources like CPU and RAM, you can still conduct your Data Science work in this powerful and stable managed environment.
 

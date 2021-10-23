@@ -1,7 +1,6 @@
-:doctype: book
+= 1.4 Object Detection
 
-
-= Step 4: Object Detection
+include::_attributes.adoc[]
 
 Now that you know how the environment works, the real work can begin!
 

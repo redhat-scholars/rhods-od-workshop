@@ -1,4 +1,4 @@
-= Creating a Kafka Instance
+= 3.1 Creating a Kafka Instance
 
 include::_attributes.adoc[]
 
@@ -61,7 +61,7 @@ IMPORTANT: The generated credentials are displayed only one time, so ensure that
 
 * After you save the generated credentials to a secure location, select the confirmation check box in the credentials window and close the window.
 
-NOTE: To review your service account information, reset your credentials, or delete the service account, use the left navigation menu to go to the https://console.redhat.com/application-services/service-accounts[Service Accounts page].
+TIP: To review your service account information, reset your credentials, or delete the service account, use the left navigation menu to go to the https://console.redhat.com/application-services/service-accounts[Service Accounts page].
 
 image::kafka/sa-create-success.png[alt text, 640]
 

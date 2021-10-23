@@ -1,5 +1,6 @@
-:doctype: book
-= Step 1: Starting a Jupyter environment
+= 1.1 Starting a Jupyter environment
+
+include::_attributes.adoc[]
 
 xref:index.adoc[Back to the introduction]
 
