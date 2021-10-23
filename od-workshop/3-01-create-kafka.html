@@ -92,7 +92,7 @@
     <span class="nav-text">3. Working with Kafka</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="3-01-create-kafka.html">1. Create a Kafka Queue</a>
+    <a class="nav-link" href="3-01-create-kafka.html">1. Create a Kafka Instance</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="3-02-explore-kafka.html">2. Explore Kafka in a Notebook</a>
@@ -121,7 +121,7 @@
   <ul>
     <li><a href="index.html">Object Detection Workshop</a></li>
     <li>3. Working with Kafka</li>
-    <li><a href="3-01-create-kafka.html">1. Create a Kafka Queue</a></li>
+    <li><a href="3-01-create-kafka.html">1. Create a Kafka Instance</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/rh-aiservices-bu/od-workshop/edit/master/documentation/modules/ROOT/pages/3-01-create-kafka.adoc">Edit this Page</a></div>
@@ -129,75 +129,350 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Creating a Kafka Instance</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that we have the model working on pictures, let&#8217;s get this working with streaming data.</p>
+</div>
+<div class="paragraph">
+<p>A Kafka instance in OpenShift Streams for Apache Kafka includes a Kafka cluster, bootstrap server, and the configurations needed to connect to producer and consumer services.  We&#8217;ll be creating:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Kafka Instance - record your <strong>Bootstrap server</strong></p>
+</li>
+<li>
+<p>Service Account - record your <strong>Client ID</strong> and <strong>Client Secret</strong></p>
+</li>
+<li>
+<p>Topics - record the names</p>
+<div class="ulist">
+<ul>
+<li>
+<p>images</p>
+</li>
+<li>
+<p>objects</p>
+</li>
+<li>
+<p>notebook-test</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll be creating this Kafka instance and related resources in a similar same way as in the QuickStart <strong>Getting started with Red Hat OpenShift Streams for Apache Kafka</strong>.  You can find the QuickStart <a href="https://console.redhat.com/application-services/learning-resources?quickstart=getting-started">here</a>.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/kafka/quickstart.png" alt="alt text" width="640">
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_a_kafka_instance"><a class="anchor" href="#_create_a_kafka_instance"></a>Create a Kafka Instance</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Let&#8217;s create our a Kafka instance.  In the OpenShift Streams for Apache Kafka web console, go to Streams for Apache Kafka &gt; Kafka Instances. <a href="https://console.redhat.com/application-services/streams/kafkas" class="bare">https://console.redhat.com/application-services/streams/kafkas</a></p>
+</li>
+<li>
+<p>Click Create Kafka instance.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/kafka/instances.png" alt="alt text" width="640">
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enter a unique <strong>Name</strong> for the Kafka instance, such as <code>username-object-detection</code> and an appropriate <strong>Cloud region</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Create instance</strong> to start the creation process for your Kafka instance.<br>
+The new Kafka instance is listed in the instances table. When the instance Status is Ready, you can start using the Kafka instance. You can use the options icon (three vertical dots) to view instance details, connect to the instance, or delete the instance.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Although you can see Kafka instances created by other users in your organization, you can’t manage or connect to those instances. Only the user who creates an instance can edit or delete the instance, access the associated service account and topics, or connect to the instance.
+</td>
+</tr>
+</table>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/kafka/instances-create.png" alt="alt text" width="640">
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_a_service_account"><a class="anchor" href="#_create_a_service_account"></a>Create a Service Account</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To connect your applications or services to a Kafka instance in the OpenShift Streams for Apache Kafka web console, you need to create a service account that’s associated with the instance. You also need to save the <strong>Bootstrap server</strong> endpoint for the instance, the generated <strong>Client ID</strong> and <strong>Client secret</strong>. You’ll use the service account and Kafka instance information later when you configure your application.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the Kafka Instances page of the web console, for the relevant Kafka instance that you want to connect to, select the options icon (three vertical dots) and click <strong>Connection</strong>.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/kafka/instances-actions.png" alt="alt text" width="640">
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the <strong>Connection</strong> page, copy the <strong>Bootstrap server</strong> endpoint to a secure location. This is the bootstrap server endpoint that you’ll need for connecting to this Kafka instance.</p>
+</li>
+<li>
+<p>Click <strong>Create service account</strong> to set up the account that you’ll use to access this Kafka instance.</p>
+</li>
+</ul>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/kafka/instances-connection.png" alt="alt text" width="640">
 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enter a unique service account name, such as <code>userx-kafka-sa</code>, add an optional description, and click <strong>Create</strong>.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/kafka/sa-create.png" alt="alt text" width="640">
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Copy the generated <strong>Client ID</strong> and <strong>Client secret</strong> to a secure location. These are the credentials that you’ll use to connect to this Kafka instance.  We&#8217;ll be using the SASL/PLAIN method of authentication.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The generated credentials are displayed only one time, so ensure that you’ve successfully and securely saved the copied credentials before closing the credentials window.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After you save the generated credentials to a secure location, select the confirmation check box in the credentials window and close the window.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To review your service account information, reset your credentials, or delete the service account, use the left navigation menu to go to the <a href="https://console.redhat.com/application-services/service-accounts">Service Accounts page</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/kafka/sa-create-success.png" alt="alt text" width="640">
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_topics"><a class="anchor" href="#_create_topics"></a>Create Topics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After you create a Kafka instance, you can create Kafka topics to start producing and consuming messages in your services.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the <strong>Kafka Instances</strong> page of the web console, click the name of the Kafka instance that you created earlier.</p>
+</li>
+</ul>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/kafka/instance-manage-access.png" alt="alt text" width="640">
+<img src="_images/kafka/instances-create-complete.png" alt="alt text" width="640">
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/kafka/instance-access.png" alt="alt text" width="640">
+<div class="paragraph">
+<p>Create the <code>images</code> topic.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Select the Topics tab, click <strong>Create topic</strong>,</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/kafka/instance-topics.png" alt="alt text" width="640">
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Follow the guided steps to define the topic details. Click <strong>Next</strong> to complete each step and click <strong>Finish</strong> to complete the setup.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Topic name: <code>images</code></p>
+</li>
+<li>
+<p>Partitions: <code>1</code></p>
+</li>
+<li>
+<p>Message retention</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Retention time: A week <em>(default)</em></p>
+</li>
+<li>
+<p>Retention size: Unlimited <em>(default)</em></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Replicas</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Replicas: 3 <em>(default)</em></p>
+</li>
+<li>
+<p>Minimum in-sync replicas: 2 <em>(default)</em></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/kafka/topic-name.png" alt="alt text" width="640">
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/kafka/topic-partitions.png" alt="alt text" width="640">
+<div class="paragraph">
+<p>Create the <code>objects</code> topic in the same way.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Topic name: <code>objects</code></p>
+</li>
+<li>
+<p>Partitions: <code>1</code></p>
+</li>
+<li>
+<p>Message retention</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Retention time: A week <em>(default)</em></p>
+</li>
+<li>
+<p>Retention size: Unlimited <em>(default)</em></p>
+</li>
+</ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/kafka/topic-mr.png" alt="alt text" width="640">
+</li>
+<li>
+<p>Replicas</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Replicas: 3 <em>(default)</em></p>
+</li>
+<li>
+<p>Minimum in-sync replicas: 2 <em>(default)</em></p>
+</li>
+</ul>
 </div>
+</li>
+</ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/kafka/topic-replicas.png" alt="alt text" width="640">
+<div class="paragraph">
+<p>Create the <code>notebook-test</code> topic in the same way.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Topic name: <code>notebook-test</code></p>
+</li>
+<li>
+<p>Partitions: <code>1</code></p>
+</li>
+<li>
+<p>Message retention</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Retention time: A week <em>(default)</em></p>
+</li>
+<li>
+<p>Retention size: Unlimited <em>(default)</em></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Replicas</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Replicas: 3 <em>(default)</em></p>
+</li>
+<li>
+<p>Minimum in-sync replicas: 2 <em>(default)</em></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When you&#8217;re done, you should have three topics listed, <code>images</code>, <code>objects</code>, and <code>notebook-test</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -205,7 +480,41 @@
 </div>
 </div>
 <div class="paragraph">
+<p>Now, before we leave, you should have the following securely recorded:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Bootstrap server</strong></p>
+</li>
+<li>
+<p><strong>Client ID</strong></p>
+</li>
+<li>
+<p><strong>Client Secret</strong></p>
+</li>
+<li>
+<p><strong>Three Topic Names</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>images</p>
+</li>
+<li>
+<p>objects</p>
+</li>
+<li>
+<p>notebook-test</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
 <p><a href="3-02-explore-kafka.html" class="page">head to the next section.</a></p>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="2-03-calling-from-application.html">3. Calling from an Application</a></span>
