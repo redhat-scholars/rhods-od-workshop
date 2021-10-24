@@ -53,5 +53,5 @@ Now, add the following three variables with the information you recorded during 
 
 image::kafka/notebook-spawn.png[alt text, 800]
 
-This will start your noteook server and now you're ready to xref:3-03-explore-kafka.adoc[head to the next section.]
+This will start your notebook server. Now you're ready to xref:3-03-explore-kafka.adoc[head to the next section.]
 
