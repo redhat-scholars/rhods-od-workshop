@@ -59,7 +59,7 @@ image::s2i/general.png[alt text]
 
 === Create
 
-* If you continue to scroll down, you will see that everything is automatically selected to create a deployment of your application, and to create a Route through which you will be able to access it. Everything is ready, so you can click on `Create`:
+* If you continue to scroll down, you will see that everything is automatically selected to create a deployment of your application, and to create a Route through which you will be able to access it. Everything is ready, so you can click on *Create*:
 
 image::s2i/create-app.png[alt text, 800]
 
