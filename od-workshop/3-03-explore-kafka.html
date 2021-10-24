@@ -132,8 +132,158 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">3.3 Exploring Kafka from Jupyter Notebooks</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p><a href="3-04-create-secret.html" class="page">head to the next section.</a></p>
+<p>Hopefully, you&#8217;re now back in a Jupyter notebook with all the necessary information you need to connect to Kafka. Just like before let&#8217;s clone a git repo and bring in some sample code.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_clone_the_git_repository"><a class="anchor" href="#_clone_the_git_repository"></a>Clone the Git Repository</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Select the root source directory to make sure you clone the git repository at the correct location.  To do this click on the folder icon in the displayed filepath in the file browser.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-nav-base.png" alt="alt text" width="360">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the left toolbar, click on the Git icon:</p>
+</li>
+<li>
+<p>Then click on <strong>Clone a Repository</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-git-clone.png" alt="alt text" width="360">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enter the git <strong>https</strong> URL, <code><a href="https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git" class="bare">https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git</a></code>, then click <strong>CLONE</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-git-repo.png" alt="alt text" width="360">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Select the newly created folder, <code>object-detection-kafka-consumer</code> and double click to browse.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-nav-select.png" alt="alt text" width="360">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-nav-folder.png" alt="alt text" width="360">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_explore_the_notebooks"><a class="anchor" href="#_explore_the_notebooks"></a>Explore the Notebooks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now&#8217;s you can try out Kafka in an interactive environment.  Two notebooks have been created for you to experiment with.  Feel free to check out the Kafka <a href="https://kafka.apache.org/documentation/">documentation</a> and the <code>kafka-python</code> <a href="https://kafka-python.readthedocs.io/">docs</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>1_kafka_consumer.ipynb</strong> - A sample <a href="https://kafka-python.readthedocs.io/en/master/apidoc/KafkaConsumer.html">consumer</a>. Start here and leave the last cell running while you try out the next notebook.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-consumer-before.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>2_kafka_producer.ipynb</strong> - A sample <a href="https://kafka-python.readthedocs.io/en/master/apidoc/KafkaProducer.html">producer</a>.  Run this file to send messages you can consume.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-producer.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Back to <strong>1_kafka_consumer.ipynb</strong> - observe the messages consumed</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-consumer-after.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Stop the kernel in <strong>both</strong> notebooks.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-stop.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exploring_the_kafka_consumer_app"><a class="anchor" href="#_exploring_the_kafka_consumer_app"></a>Exploring the Kafka Consumer App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the next section, we&#8217;ll turn our git repo into a new application.  Before we do, let&#8217;s stop to examine the application files.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open the <code>prediction.py</code> file. What&#8217;s interesting here is that there is NO difference from the rest service.  The data science prediction code did not change</p>
+</li>
+<li>
+<p>Open the <code>requirements.txt</code> file.  Again, the data science portion of the project as not changed.  What has changed is the application dependencies.  <code>flask</code> and <code>gunicorn</code> have been changed into our dependency for <code>kafka-python</code>.</p>
+</li>
+<li>
+<p>Open the <code>app.py</code> file.  This is the bulk of our change.  Our application code changed from the rest service in the <code>wsgi.py</code> to a basic Kafka consumer/producer.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When you&#8217;ve seen all you want to see, <a href="3-04-create-secret.html" class="page">head to the next section.</a></p>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="3-02-respawn-notebook.html">2. Restart a Notebook Server</a></span>
