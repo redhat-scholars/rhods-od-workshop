@@ -8,11 +8,11 @@ You now have an application listening at the route that was created during the d
 
 If you scroll down on the detail panel, you will see the route that was created for your application. This is the URL you will use to send images:
 
-image::s2i/topology-route.png[alt text, 480]
+image::s2i/topology-route.png[alt text, 640]
 
 You can test it but simply clicking on the route link, or copy/paste it in your browser:
 
-image::s2i/app-status.png[alt text, 640]
+image::s2i/app-status.png[alt text, 800]
 
 == Uploading images
 

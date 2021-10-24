@@ -17,7 +17,7 @@ A Kafka instance in OpenShift Streams for Apache Kafka includes a Kafka cluster,
 
 We'll be creating this Kafka instance and related resources in a similar same way as in the QuickStart *Getting started with Red Hat OpenShift Streams for Apache Kafka*.  You can find the QuickStart https://console.redhat.com/application-services/learning-resources?quickstart=getting-started[here].
 
-image::kafka/quickstart.png[alt text, 640]
+image::kafka/quickstart.png[alt text, 800]
 
 == Create a Kafka Instance
 
@@ -26,7 +26,7 @@ image::kafka/quickstart.png[alt text, 640]
 
 * Click Create Kafka instance.
 
-image::kafka/instances.png[alt text, 640]
+image::kafka/instances.png[alt text, 800]
 
 * Enter a unique *Name* for the Kafka instance, such as `username-object-detection` and an appropriate *Cloud region*.
 
@@ -35,7 +35,7 @@ image::kafka/instances.png[alt text, 640]
 
 NOTE: Although you can see Kafka instances created by other users in your organization, you can’t manage or connect to those instances. Only the user who creates an instance can edit or delete the instance, access the associated service account and topics, or connect to the instance.
 
-image::kafka/instances-create.png[alt text, 640]
+image::kafka/instances-create.png[alt text, 800]
 
 == Create a Service Account
 
@@ -43,17 +43,17 @@ To connect your applications or services to a Kafka instance in the OpenShift St
 
 * In the Kafka Instances page of the web console, for the relevant Kafka instance that you want to connect to, select the options icon (three vertical dots) and click *Connection*.
 
-image::kafka/instances-actions.png[alt text, 640]
+image::kafka/instances-actions.png[alt text, 800]
 
 * In the *Connection* page, copy the *Bootstrap server* endpoint to a secure location. This is the bootstrap server endpoint that you’ll need for connecting to this Kafka instance.
 
 * Click *Create service account* to set up the account that you’ll use to access this Kafka instance.
 
-image::kafka/instances-connection.png[alt text, 640]
+image::kafka/instances-connection.png[alt text, 800]
 
 * Enter a unique service account name, such as `userx-kafka-sa`, add an optional description, and click *Create*.
 
-image::kafka/sa-create.png[alt text, 640]
+image::kafka/sa-create.png[alt text, 800]
 
 * Copy the generated *Client ID* and *Client secret* to a secure location. These are the credentials that you’ll use to connect to this Kafka instance.  We'll be using the SASL/PLAIN method of authentication.
 
@@ -63,29 +63,58 @@ IMPORTANT: The generated credentials are displayed only one time, so ensure that
 
 TIP: To review your service account information, reset your credentials, or delete the service account, use the left navigation menu to go to the https://console.redhat.com/application-services/service-accounts[Service Accounts page].
 
-image::kafka/sa-create-success.png[alt text, 640]
+image::kafka/sa-create-success.png[alt text, 800]
 
-//== Setting Permissions
-//
-//After you create a service account to connect to a Kafka instance, you must also set the appropriate level of access for that new account in the Access Control List (ACL) of the Kafka instance. OpenShift Streams for Apache Kafka uses ACLs provided by Kafka that enable you to manage how other user accounts and service accounts are permitted to interact with the Kafka resources that you create.
-//
-//* In the *Kafka Instances* page of the web console, click the name of the Kafka instance that you created earlier.
-//
-//image::kafka/instances-create-complete.png[alt text, 640]
-//
-//* Click the *Access* tab to view the current ACL for this instance.
-//
-//image::kafka/instance-access-before.png[alt text, 480]
-//
-//Click *Manage access*, use the *Account* drop-down menu to select the service account that you previously created, and click *Next*. 
-//
-//NOTE: You can use your *Client ID* to filter and find your service account
-//
-//image::kafka/instance-manage-access-sa.png[alt text, 480]
-//
-//image::kafka/instance-manage-access.png[alt text, 640]
-//
-//image::kafka/instance-access-after.png[alt text, 640]
+== Setting Permissions
+
+After you create a service account to connect to a Kafka instance, you must also set the appropriate level of access for that new account in the Access Control List (ACL) of the Kafka instance. OpenShift Streams for Apache Kafka uses ACLs provided by Kafka that enable you to manage how other user accounts and service accounts are permitted to interact with the Kafka resources that you create.
+
+* In the *Kafka Instances* page of the web console, click the name of the Kafka instance that you created earlier.
+
+image::kafka/instances-create-complete.png[alt text, 800]
+
+* Click the *Access* tab to view the current ACL for this instance.
+
+image::kafka/instance-access-before.png[alt text, 640]
+
+* Click *Manage access*, use the *Account* drop-down menu to select the service account that you previously created, and click *Next*. 
+
+NOTE: You can use your *Client ID* to filter and find your service account
+
+image::kafka/instance-manage-access-sa.png[alt text, 800]
+
+* Under Assign Permissions, use the drop-down menus to set the permissions shown in the following table for this service account. Click Add to add each new resource permission.
+
+These permissions enable applications associated with the service account to create and delete topics in the instance, to produce and consume messages in any topic in the instance, and to use any consumer group and any producer.
+
+NOTE: Ignore any validation errors on the `*` value
+
+[cols="1,1,1,1,1"]
+|===
+3+|Resource Type 2+|Permission
+
+|Topic
+|Is
+|*
+|Allow
+|All
+
+|Consumer group
+|Is
+|*
+|Allow
+|All
+
+|Transactional ID
+|Is
+|*
+|Allow
+|All
+|===
+
+image::kafka/instance-manage-access.png[alt text, 860]
+
+image::kafka/instance-access-after.png[alt text, 800]
 
 == Create Topics 
 
@@ -93,14 +122,14 @@ After you create a Kafka instance, you can create Kafka topics to start producin
 
 * In the *Kafka Instances* page of the web console, click the name of the Kafka instance that you created earlier.
 
-image::kafka/instances-create-complete.png[alt text, 640]
+image::kafka/instances-create-complete.png[alt text, 800]
 
 
 Create the `images` topic.  
 
 * Select the Topics tab, click *Create topic*,
 
-image::kafka/instance-topics.png[alt text, 640]
+image::kafka/instance-topics.png[alt text, 800]
 
 * Follow the guided steps to define the topic details. Click *Next* to complete each step and click *Finish* to complete the setup.
 
@@ -113,7 +142,7 @@ image::kafka/instance-topics.png[alt text, 640]
 *** Replicas: 3 _(default)_
 *** Minimum in-sync replicas: 2 _(default)_
 
-image::kafka/topic-name.png[alt text, 640]
+image::kafka/topic-name.png[alt text, 800]
 
 Create the `objects` topic in the same way.
 
@@ -139,7 +168,7 @@ Create the `notebook-test` topic in the same way.
 
 When you're done, you should have three topics listed, `images`, `objects`, and `notebook-test`
 
-image::kafka/instance-topics-complete.png[alt text, 640]
+image::kafka/instance-topics-complete.png[alt text, 800]
 
 Now, before we leave, you should have the following securely recorded:
 

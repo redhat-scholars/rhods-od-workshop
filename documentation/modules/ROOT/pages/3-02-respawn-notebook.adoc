@@ -14,15 +14,15 @@ If you're notebook is currently running, you might want to restart with a new ba
 
 * Navigate through the menu to *File* -> *Hub Control Panel*
 
-image::kafka/notebook-hub.png[alt text, 640]
+image::kafka/notebook-hub.png[alt text, 800]
 
 * Click the *Stop My Server* Button
 
-image::kafka/notebook-spawn-stop.png[alt text, 640]
+image::kafka/notebook-spawn-stop.png[alt text, 800]
 
 * Wait for the Stop My Server button to disappear and then click the *Start My Server* Button
 
-image::kafka/notebook-spawn-start.png[alt text, 640]
+image::kafka/notebook-spawn-start.png[alt text, 800]
 
 
 == Starting a Notebook to Connect to Kafka
@@ -51,7 +51,7 @@ Now, add the following three variables with the information you recorded during 
 
 * Click *Start server*
 
-image::kafka/notebook-spawn.png[alt text, 640]
+image::kafka/notebook-spawn.png[alt text, 800]
 
 This will start your noteook server and now you're ready to xref:3-03-explore-kafka.adoc[head to the next section.]
 

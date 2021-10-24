@@ -12,7 +12,7 @@ If you followed previous naming instructions, your service should be `http://obj
 
 * From the project topology, open your deployment's detail screen.  
 
-image::s2i/topology-rest-service.png[alt text, 640]
+image::s2i/topology-rest-service.png[alt text, 800]
 
 * Then click on the service and view the name and port.  Your internal URL will be `http://<service-name>:<service-port>`
 
@@ -28,11 +28,11 @@ We will create the test app the exact same way we created the REST service, but 
 
 image::s2i/dev-view.png[alt text]
 
-image::s2i/select-project.png[alt text, 480]
+image::s2i/select-project.png[alt text, 640]
 
 * From the `+Add` menu, click on the `From Git` tile:
 
-image::s2i/from-git.png[alt text, 640]
+image::s2i/from-git.png[alt text, 800]
 
 == Configure the Application
 
@@ -47,13 +47,13 @@ image::s2i/from-git.png[alt text, 640]
 https://github.com/rh-aiservices-bu/object-detection-app.git
 ----
 
-image::s2i/git-repo-app.png[alt text, 640]
+image::s2i/git-repo-app.png[alt text, 800]
 
 === Set the App Name
 
 * By default, our new deployment will be added to the existing application `object-detection` we created during our previous app.  We can leave that as is.  Instead of `object-detection-app-git`, we can change the *Name* to  `object-detection-app`, but it's not required.
 
-image::s2i/general-app.png[alt text, 640]
+image::s2i/general-app.png[alt text, 800]
 
 === Configure a Secure Route
 Our application will access device cameras, so it will require a secure, https route.  We need to configure this application to use a secure route for access.
@@ -62,7 +62,7 @@ We can leave the default resource as *Deployment*, but we need to configure some
 
 * Under *Advanced Options*, open the *Show advanced Routing options*.
 
-image::s2i/create-app-route.png[alt text, 640]
+image::s2i/create-app-route.png[alt text, 800]
 
 * Set the route options
 ** Under *Security*, select *Secure Route*. 
@@ -70,7 +70,7 @@ image::s2i/create-app-route.png[alt text, 640]
 ** For *Insecure traffic*, choose *Redirect*.
 ** Leave the other advanced routing fields as they are.
 
-image::s2i/create-app-route-adv.png[alt text, 640]
+image::s2i/create-app-route-adv.png[alt text, 800]
 
 === Configure the Deployment Environment Variables
 
@@ -78,7 +78,7 @@ The application needs to know where to send its images for predictions. Earlier,
 
 * Under Advanced options, open the *Deployment*  options.
 
-image::s2i/create-app-deployment.png[alt text, 640]
+image::s2i/create-app-deployment.png[alt text, 800]
 
 * Under *Environment variables (runtime only)*, create a Name / Value pair. 
 ** *Name* = `OBJECT_DETECTION_URL`
@@ -101,7 +101,7 @@ http://object-detection-rest:8080/predictions
 ----
 NOTE: If you named the rest services `object-detection-rest`, this value should be `http://object-detection-rest:8080/predictions`.  If not, used the observed value.
 
-image::s2i/create-app-env-var.png[alt text, 640]
+image::s2i/create-app-env-var.png[alt text, 800]
 
 === Create
 
@@ -113,10 +113,10 @@ image::s2i/create-button.png[alt text]
 
 * You can see a new application has been created and is currently building.  Like before, wait for the build to complete and pods to deploy.
 
-image::s2i/topology-app.png[alt text, 640]
+image::s2i/topology-app.png[alt text, 800]
 
 * After the application is deployed click on the route to launch the application.  Try it out from your laptop or phone with a camera.
 
-image::s2i/app-screenshot.png[alt text, 640]
+image::s2i/app-screenshot.png[alt text, 800]
 
 Next, we can explore working with streaming data.  xref:3-01-create-kafka.adoc[Head to the next section.]

@@ -1,10 +1,10 @@
 = 3.4 Create a Kafka Consumer
 
-image::kafka/create-consumer-git.png[alt text, 640]
-image::kafka/create-consumer-general.png[alt text, 640]
-image::kafka/create-consumer-advanced.png[alt text, 640]
+image::kafka/create-consumer-git.png[alt text, 800]
+image::kafka/create-consumer-general.png[alt text, 800]
+image::kafka/create-consumer-advanced.png[alt text, 800]
 image::kafka/create-button.png[alt text]
-image::kafka/create-consumer-building.png[alt text, 640]
+image::kafka/create-consumer-building.png[alt text, 800]
 
 
 include::_attributes.adoc[]
