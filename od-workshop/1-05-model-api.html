@@ -133,7 +133,7 @@
 <article class="doc">
 <h1 class="page">1.5 Packaging the model as an API</h1>
 <div class="paragraph">
-<p>In the previous section, we learned how to create the code that will be able to extract the number from a given licence plate. But of course we cannot use a notebook directly like this in a production environment.</p>
+<p>In the previous section, we learned how to create the code that will use an existing object detection model to identify object in a static image. But of course we cannot use a notebook directly like this in a production environment.</p>
 </div>
 <div class="paragraph">
 <p>So now we will learn how to <strong>package</strong> this code as an <strong>API</strong> that you can directly query from other applications.</p>
@@ -147,7 +147,7 @@
 <p>The code that we wrote in the notebook has been repackaged as a single Python file, <code>prediction.py</code>. Basically, it&#8217;s just the code that was in all the cells of the notebook that was put together inside a single file.</p>
 </li>
 <li>
-<p>To use this code as a function you can call, we just added a function called <code>predict</code> that takes a string as an input, the name of the picture, does the recognition, and sends back the result. Open the file directly in JupyterLab, see for yourself, you should recognize our previous code, with this new function added.</p>
+<p>To use this code as a function you can call, we just added a function called <code>predict</code> that takes a string as an input, the name of the picture, does the recognition, and sends back the result. Open the file directly in JupyterLab and see for yourself - you should recognize our previous code, with this new function added.</p>
 </li>
 <li>
 <p>There are other files in the folder that are used to provide functions to launch a web server that will be used to serve our API.</p>
