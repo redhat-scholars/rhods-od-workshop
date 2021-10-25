@@ -69,7 +69,7 @@ image::s2i/create-app.png[alt text, 800]
 
 image::s2i/topology.png[alt text, 800]
 
-* Click on the deployment to open a detail panel on the right.
+* Click on the python logo in the center of the deployment to open a detail panel on the right.
 
 image::s2i/topology-rest-building.png[alt text, 800]
 
@@ -77,6 +77,6 @@ image::s2i/topology-rest-building.png[alt text, 800]
 
 image::s2i/topology-rest-complete.png[alt text, 800]
 
-Once you're finished, you can come back here and xref:2-02-testing-deployment.adoc[head to the next section.]
+Once the build is complete xref:2-02-testing-deployment.adoc[head to the next section.]
 
 
