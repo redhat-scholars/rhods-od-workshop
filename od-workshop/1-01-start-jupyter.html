@@ -68,7 +68,7 @@
     <a class="nav-link" href="1-04-object-detection.html">4. Object Detection</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="1-05-model-api.html">5. Serving the model as an API</a>
+    <a class="nav-link" href="1-05-model-api.html">5. Serving a Model</a>
   </li>
 </ul>
   </li>
@@ -132,9 +132,16 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">1.1 Starting a Jupyter environment</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p><a href="index.html" class="page">Back to the introduction</a></p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_openshift_data_science_dashboard"><a class="anchor" href="#_the_openshift_data_science_dashboard"></a>The OpenShift Data Science Dashboard</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>You should be logged into <strong>Red Hat OpenShift Data Science</strong>, and be able to see the dashboard, that looks like this:</p>
 </div>
@@ -158,6 +165,11 @@
 <img src="_images/notebooks/jh_launch.png" alt="alt text">
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_juptyerhub"><a class="anchor" href="#_juptyerhub"></a>JuptyerHub</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If it&#8217;s the first time you&#8217;re launching Jupyter, you will be sent to a page that will require you to login and ask for your authorization to use your user account to authenticate to Jupyter. You should of course allow this if you want to do the workshop&#8230;&#8203;</p>
 </div>
@@ -184,6 +196,19 @@
 </li>
 </ul>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you do not pick the correct notebook image, <strong>Tensorflow</strong>, the notebooks in the following sections will fail to run since they do not have the correct Python libraries. <br>
+If you need to restart your notebook server with the correct image, you can do so from <strong>File</strong> &#8594; <strong>Hub Control Panel</strong> in the notebook environment in the next section.
+</td>
+</tr>
+</table>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/notebooks/j_start.png" alt="alt text">
@@ -191,6 +216,8 @@
 </div>
 <div class="paragraph">
 <p>While your environment is starting,  <a href="1-02-jupyter-env.html" class="page">let&#8217;s go to the next section.</a></p>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="index.html">Object Detection Workshop</a></span>
