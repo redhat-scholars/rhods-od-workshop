@@ -66,7 +66,7 @@ image::kafka/secret-select.png[alt text, 800]
 
 * Click *Add Secret to workload*
 
-* Select *object-detection-app* deployment as the workload.
+* Select *object-detection-kafka-consumer* deployment as the workload.
 
 * Click *Save*
 
