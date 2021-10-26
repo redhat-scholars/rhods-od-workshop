@@ -3,7 +3,7 @@
 ** xref:1-02-jupyter-env.adoc[2. The Jupyter environment]
 ** xref:1-03-notebooks.adoc[3. Notebooks]
 ** xref:1-04-object-detection.adoc[4. Object Detection]
-** xref:1-05-model-api.adoc[5. Serving the model as an API]
+** xref:1-05-model-api.adoc[5. Serving a Model]
 * 2. Serving with S2I
 ** xref:2-01-deploy-s2i.adoc[1. Deploy with Source to Image]
 ** xref:2-02-testing-deployment.adoc[2. Testing the Deployment]

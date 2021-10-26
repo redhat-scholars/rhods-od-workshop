@@ -4,6 +4,8 @@ include::_attributes.adoc[]
 
 xref:index.adoc[Back to the introduction]
 
+== The OpenShift Data Science Dashboard
+
 You should be logged into *Red Hat OpenShift Data Science*, and be able to see the dashboard, that looks like this:
 
 image::notebooks/dashboard.png[alt text]
@@ -14,6 +16,8 @@ image::notebooks/dashboard.png[alt text]
 
 image::notebooks/jh_launch.png[alt text]
 
+== JuptyerHub
+
 If it's the first time you're launching Jupyter, you will be sent to a page that will require you to login and ask for your authorization to use your user account to authenticate to Jupyter. You should of course allow this if you want to do the workshop...
 
 Once you have authorized access, you will be taken to the JupyterHub "Spawner Options" page.
@@ -22,6 +26,9 @@ Once you have authorized access, you will be taken to the JupyterHub "Spawner Op
  ** For the *Notebook Image* , select *TensorFlow* (`Python v3.8.6, Tensorflow v2.4.1`), as this is the flavor of notebook we want to use. It includes the TensorFlow library, which is used to do object detection.
  ** From the *Container size* dropdown, select `Default`.
  ** At the bottom of the page you can now click on the *Start Server* button:
+
+IMPORTANT: If you do not pick the correct notebook image, *Tensorflow*, the notebooks in the following sections will fail to run since they do not have the correct Python libraries.  +
+If you need to restart your notebook server with the correct image, you can do so from *File* -> *Hub Control Panel* in the notebook environment in the next section.
 
 image::notebooks/j_start.png[alt text]
 

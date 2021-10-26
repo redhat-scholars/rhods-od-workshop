@@ -1,10 +1,10 @@
-= 1.5 Packaging the model as an API
+= 1.5 Serving a model
 
 include::_attributes.adoc[]
 
 In the previous section, we learned how to create the code that will use an existing object detection model to identify object in a static image. But of course we cannot use a notebook directly like this in a production environment.
 
-So now we will learn how to *package* this code as an *API* that you can directly query from other applications.
+So now we will learn how to service this model as an *API* that you can directly query from other applications.
 
 Some explanations first:
 
