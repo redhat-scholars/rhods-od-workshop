@@ -21,11 +21,11 @@ NOTE:  as our prediction function is waiting for a json payload with a base64 en
 * Open the notebook named `04_test_flask.ipynb`
 * Upload an image in your environment
 * In the first cell, replace the placeholders with your:
- ** Image path and name.
- ** Route to the service.
-* Run the cells and see the result!
+ ** Image path and name. `my_image`
+ ** Route to the service. `my_route`
+* Run the cells and see the result! 
 
-image::s2i/send-image.png[alt text]
+image::s2i/send-image.png[alt text, 800]
 
 Once you're finished, you can come back here and xref:2-03-calling-from-application.adoc[head to the next section.]
 
