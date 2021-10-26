@@ -27,10 +27,13 @@ Once you have authorized access, you will be taken to the JupyterHub "Spawner Op
  ** From the *Container size* dropdown, select `Default`.
  ** At the bottom of the page you can now click on the *Start Server* button:
 
-IMPORTANT: If you do not pick the correct notebook image, *Tensorflow*, the notebooks in the following sections will fail to run since they do not have the correct Python libraries.  +
-If you need to restart your notebook server with the correct image, you can do so from *File* -> *Hub Control Panel* in the notebook environment in the next section.
-
 image::notebooks/j_start.png[alt text]
+
+
+{nbsp} +
+
+IMPORTANT: If you do not pick the correct notebook image, *TensorFlow*, the notebooks in the following sections will fail to run since they do not have the correct Python libraries.  +
+If you need to restart your notebook server with the correct image, you can do so from *File* -> *Hub Control Panel* in the notebook environment in the next section.
 
 While your environment is starting,  xref:1-02-jupyter-env.adoc[let's go to the next section.]
 
