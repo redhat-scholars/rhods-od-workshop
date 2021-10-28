@@ -41,13 +41,35 @@ Now, add the following three variables with the information you recorded during 
 
 ** `Custom Variable`
 *** Variable name: `KAFKA_BOOTSTRAP_SERVER`
-*** Variable value: `<Kafka Bootstrap server>`
-** `Custom Variable`
+*** Variable value: Location of the Kafka *Bootstrap Server*.  (e.g. "abc.xyz.kafka.rhcloud.com:443"
+** `Custom Variable`)
 *** Variable name: `KAFKA_USERNAME`
-** Variable value: `<Service Account Client ID>`
+*** Variable value: *Client ID* of the Service Account you created (e.g. "srvc-acct-1234-5678-abcd-efgj-12345678abcd")
 ** `Custom Variable`
 *** Variable name: `KAFKA_PASSWORD`
-*** Variable value: `<Service Account Client secret>`
+*** Variable value: *Client secret* of the Service Account you created. (e.g. "abcd1234-5678-abcd-efgj-12345678abcd")
+
+[.lines_space]
+[.console-input]
+[source,text]
+----
+KAFKA_BOOTSTRAP_SERVER
+----
+
+[.lines_space]
+[.console-input]
+[source,text]
+----
+KAFKA_USERNAME
+----
+
+[.lines_space]
+[.console-input]
+[source,text]
+----
+KAFKA_PASSWORD
+----
+{nbsp} + 
 
 * Click *Start server*
 
