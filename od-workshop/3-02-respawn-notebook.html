@@ -218,23 +218,23 @@ Now, add the following three variables with the information you recorded during 
 <p>Variable name: <code>KAFKA_BOOTSTRAP_SERVER</code></p>
 </li>
 <li>
-<p>Variable value: <code>&lt;Kafka Bootstrap server&gt;</code></p>
+<p>Variable value: Location of the Kafka <strong>Bootstrap Server</strong>.  (e.g. "abc.xyz.kafka.rhcloud.com:443"</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>Custom Variable</code></p>
+<p><code>Custom Variable</code>)</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Variable name: <code>KAFKA_USERNAME</code></p>
 </li>
+<li>
+<p>Variable value: <strong>Client ID</strong> of the Service Account you created (e.g. "srvc-acct-1234-5678-abcd-efgj-12345678abcd")</p>
+</li>
 </ul>
 </div>
-</li>
-<li>
-<p>Variable value: <code>&lt;Service Account Client ID&gt;</code></p>
 </li>
 <li>
 <p><code>Custom Variable</code></p>
@@ -244,7 +244,7 @@ Now, add the following three variables with the information you recorded during 
 <p>Variable name: <code>KAFKA_PASSWORD</code></p>
 </li>
 <li>
-<p>Variable value: <code>&lt;Service Account Client secret&gt;</code></p>
+<p>Variable value: <strong>Client secret</strong> of the Service Account you created. (e.g. "abcd1234-5678-abcd-efgj-12345678abcd")</p>
 </li>
 </ul>
 </div>
@@ -252,6 +252,28 @@ Now, add the following three variables with the information you recorded during 
 </ul>
 </div>
 </li>
+</ul>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">KAFKA_BOOTSTRAP_SERVER</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">KAFKA_USERNAME</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">KAFKA_PASSWORD</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Click <strong>Start server</strong></p>
 </li>
