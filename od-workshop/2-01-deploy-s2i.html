@@ -127,7 +127,7 @@
     <li><a href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/rh-aiservices-bu/od-workshop/edit/master/documentation/modules/ROOT/pages/2-01-deploy-s2i.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/rhods-od-workshop/edit/master/documentation/modules/ROOT/pages/2-01-deploy-s2i.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -136,6 +136,38 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>Now that the application code is working, we&#8217;re ready to build it as a container image, create an OpenShift deployment, and have it running as a service you will be able to call from any other application.</p>
+</div>
+<div class="paragraph">
+<p>This repository was created as a source to image Python application.  A Python application developer and a data scientist can work together in this repository to create the buildable application.  You can see the template <a href="https://github.com/opendatahub-io/odh-s2i-project-simple">GitHub repository</a> and try for yourself.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Some interesting files to examine in the application</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/rh-aiservices-bu/object-detection-rest/blob/master/wsgi.py">wsgi.py</a> - the main entrypoint for the python application and calls the prediction function.</p>
+</li>
+<li>
+<p><a href="https://github.com/rh-aiservices-bu/object-detection-rest/blob/master/prediction.py">prediction.py</a> -which contains the function the data scientist has extracted to make predictions.  Called from the application with a dictionary parameter.</p>
+</li>
+<li>
+<p><a href="https://github.com/rh-aiservices-bu/object-detection-rest/blob/master/requirements.txt">requirements.txt</a> - where both the app developer and data scientists add their python dependencies for the served application.</p>
+</li>
+<li>
+<p><a href="https://github.com/rh-aiservices-bu/object-detection-rest/tree/master/.s2i">s2i directory</a> - which contains files to customize the application deployment</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>You can also learn more about <a href="https://access.redhat.com/documentation/en-us/red_hat_software_collections/2/html/using_red_hat_software_collections_container_images/sti">Source to Image</a> and the <a href="https://github.com/sclorg/s2i-python-container">Python builder image</a>:</p>
+</div>
+<div class="paragraph">
+<p>Now, let&#8217;s create the application.</p>
 </div>
 </div>
 </div>
