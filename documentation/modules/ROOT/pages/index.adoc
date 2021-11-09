@@ -7,12 +7,13 @@
 
 Welcome!
 
-In this workshop, you'll learn how AI/ML enables us to identify objects in images. 
+In this workshop, you'll learn an easy way to incorporate data science and AI/ML into an OpenShift development workflow.  As an example, you'll use an object detection model in several different ways.
 
-You will: 
+You will:
 
-* use Jupyter Notebooks TensorFlow to explore a pre-trained object detection model
-* use source-to-image (s2i) to serve the model as a Flask App
+* use Jupyter Notebooks and TensorFlow to explore a pre-trained object detection model
+* serve the model in a REST API as a Flask App
+* use source-to-image (s2i) to build and deploy the Flask App
 * explore Kafka streams from notebooks
 * deploy a Kafka consumer with the same object detection model
 
