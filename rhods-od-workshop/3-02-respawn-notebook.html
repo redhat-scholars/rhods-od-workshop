@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>3.2 Restart a Notebook Server :: Object Detection Workshop</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/rhods-od-workshop/rhods-od-workshop/3-02-respawn-notebook.html">
+    <link rel="prev" href="3-01-create-kafka.html">
+    <link rel="next" href="3-03-explore-kafka.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/rhods-od-workshop">Object Detection Workshop</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rhods-od-workshop" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">1. Notebooks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-02-jupyter-env.html">2. The Jupyter environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-03-notebooks.html">3. Notebooks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-04-object-detection.html">4. Object Detection</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-05-model-api.html">5. Serving a Model</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">2. Serving with S2I</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-02-testing-deployment.html">2. Testing the Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-03-calling-from-application.html">3. Calling from an Application</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">3. Working with Kafka</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-01-create-kafka.html">1. Create a Kafka Instance</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="3-02-respawn-notebook.html">2. Restart a Notebook Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-03-explore-kafka.html">3. Explore Kafka in a Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-04-create-secret.html">4. Create a Secret to Connect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-05-kakfa-consumer.html">5. Deploy a Kafka Consumer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Object Detection Workshop</a></li>
+    <li>3. Working with Kafka</li>
+    <li><a href="3-02-respawn-notebook.html">2. Restart a Notebook Server</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/rhods-od-workshop/edit/master/documentation/modules/ROOT/pages/3-02-respawn-notebook.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">3.2 Restart a Notebook Server</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that we have a working Kafka Instance we can connect to, we can try out sending and receiving messages from a Jupyter notebook.  We&#8217;ll start a notebook and connect to your new Kafka instance.  Then, we&#8217;ll show a different kind of application using the exact same prediction code to consume and produce streaming data.</p>
+</div>
+<div class="paragraph">
+<p>For now, return to Red Hat OpenShift Data Science and navigate to JupyterHub.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stopping_a_notebook"><a class="anchor" href="#_stopping_a_notebook"></a>Stopping a Notebook</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you&#8217;re notebook is currently running, you might want to restart with a new base image or different settings.  In this case, we need to restart our notebook with our Kafka connection information from the Hub Control Panel (Start a notebook server page).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate through the menu to <strong>File</strong> &#8594; <strong>Hub Control Panel</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-hub.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click the <strong>Stop My Server</strong> Button</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-spawn-stop.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Wait for the Stop My Server button to disappear and then click the <strong>Start My Server</strong> Button</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-spawn-start.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_starting_a_notebook_to_connect_to_kafka"><a class="anchor" href="#_starting_a_notebook_to_connect_to_kafka"></a>Starting a Notebook to Connect to Kafka</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This should bring you back to the now familar "Start a notebook server" page.  We&#8217;re going to start a notebook with the environment variables necessary to connect to Kafka.  Then we can make sure everything is working before we deploy our AI Application.</p>
+</div>
+<div class="paragraph">
+<p>On the "Start a notebook server" page, enter in the fields.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set <strong>Notebook image</strong> to <strong>TensorFlow</strong>.</p>
+</li>
+<li>
+<p>Set <strong>Container size</strong> to <strong>Small</strong></p>
+</li>
+<li>
+<p>Add <strong>Environment variables</strong><br>
+To add environment variables click <strong>Add more variables</strong> for each variable and enter the variable info.  Afterwards, to hide the value and save it in a Kubernetes secret, click the secret checkbox. <br>
+Now, add the following three variables with the information you recorded during your Kafka instance creation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Custom Variable</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Variable name: <code>KAFKA_BOOTSTRAP_SERVER</code></p>
+</li>
+<li>
+<p>Variable value: Location of the Kafka <strong>Bootstrap Server</strong>.  (e.g. "abc.xyz.kafka.rhcloud.com:443"</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>Custom Variable</code>)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Variable name: <code>KAFKA_USERNAME</code></p>
+</li>
+<li>
+<p>Variable value: <strong>Client ID</strong> of the Service Account you created (e.g. "srvc-acct-1234-5678-abcd-efgj-12345678abcd")</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>Custom Variable</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Variable name: <code>KAFKA_PASSWORD</code></p>
+</li>
+<li>
+<p>Variable value: <strong>Client secret</strong> of the Service Account you created. (e.g. "abcd1234-5678-abcd-efgj-12345678abcd")</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">KAFKA_BOOTSTRAP_SERVER</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">KAFKA_USERNAME</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">KAFKA_PASSWORD</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click <strong>Start server</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-spawn.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>This will start your notebook server. Now you&#8217;re ready to <a href="3-03-explore-kafka.html" class="page">head to the next section.</a></p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="3-01-create-kafka.html">1. Create a Kafka Instance</a></span>
+  <span class="next"><a href="3-03-explore-kafka.html">3. Explore Kafka in a Notebook</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

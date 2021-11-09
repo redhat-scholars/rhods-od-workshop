@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>2.2 Testing the Deployed API :: Object Detection Workshop</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/rhods-od-workshop/rhods-od-workshop/2-02-testing-deployment.html">
+    <link rel="prev" href="2-01-deploy-s2i.html">
+    <link rel="next" href="2-03-calling-from-application.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/rhods-od-workshop">Object Detection Workshop</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rhods-od-workshop" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">1. Notebooks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-02-jupyter-env.html">2. The Jupyter environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-03-notebooks.html">3. Notebooks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-04-object-detection.html">4. Object Detection</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-05-model-api.html">5. Serving a Model</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">2. Serving with S2I</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="2-02-testing-deployment.html">2. Testing the Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-03-calling-from-application.html">3. Calling from an Application</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">3. Working with Kafka</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-01-create-kafka.html">1. Create a Kafka Instance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-02-respawn-notebook.html">2. Restart a Notebook Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-03-explore-kafka.html">3. Explore Kafka in a Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-04-create-secret.html">4. Create a Secret to Connect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-05-kakfa-consumer.html">5. Deploy a Kafka Consumer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Object Detection Workshop</a></li>
+    <li>2. Serving with S2I</li>
+    <li><a href="2-02-testing-deployment.html">2. Testing the Deployment</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/rhods-od-workshop/edit/master/documentation/modules/ROOT/pages/2-02-testing-deployment.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">2.2 Testing the Deployed API</h1>
+<div class="sect1">
+<h2 id="_app_status"><a class="anchor" href="#_app_status"></a>App Status</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You now have an application listening at the route that was created during the deployment.</p>
+</div>
+<div class="paragraph">
+<p>If you scroll down on the detail panel, you will see the route that was created for your application. This is the URL you will use to send images:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/topology-route.png" alt="alt text" width="640">
+</div>
+</div>
+<div class="paragraph">
+<p>You can test it but simply clicking on the route link, or copy/paste it in your browser:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/app-status.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sample_request"><a class="anchor" href="#_sample_request"></a>Sample Request</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+as our prediction function is waiting for a json payload with a base64 encoded image, we must do this encoding first.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open the notebook named <code>04_test_flask.ipynb</code></p>
+</li>
+<li>
+<p>Upload an image in your environment</p>
+</li>
+<li>
+<p>In the first cell, replace the placeholders with your:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Image path and name. <code>my_image</code></p>
+</li>
+<li>
+<p>Route to the service. <code>my_route</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Run the cells and see the result!</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/send-image.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Once you&#8217;re finished, you can come back here and <a href="2-03-calling-from-application.html" class="page">head to the next section.</a></p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a></span>
+  <span class="next"><a href="2-03-calling-from-application.html">3. Calling from an Application</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

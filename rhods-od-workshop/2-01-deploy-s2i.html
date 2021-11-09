@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>2.1 Deploying as Source To Image Application :: Object Detection Workshop</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/rhods-od-workshop/rhods-od-workshop/2-01-deploy-s2i.html">
+    <link rel="prev" href="1-05-model-api.html">
+    <link rel="next" href="2-02-testing-deployment.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/rhods-od-workshop">Object Detection Workshop</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rhods-od-workshop" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">1. Notebooks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-02-jupyter-env.html">2. The Jupyter environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-03-notebooks.html">3. Notebooks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-04-object-detection.html">4. Object Detection</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-05-model-api.html">5. Serving a Model</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">2. Serving with S2I</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-02-testing-deployment.html">2. Testing the Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-03-calling-from-application.html">3. Calling from an Application</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">3. Working with Kafka</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-01-create-kafka.html">1. Create a Kafka Instance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-02-respawn-notebook.html">2. Restart a Notebook Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-03-explore-kafka.html">3. Explore Kafka in a Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-04-create-secret.html">4. Create a Secret to Connect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-05-kakfa-consumer.html">5. Deploy a Kafka Consumer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Object Detection Workshop</a></li>
+    <li>2. Serving with S2I</li>
+    <li><a href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/rhods-od-workshop/edit/master/documentation/modules/ROOT/pages/2-01-deploy-s2i.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">2.1 Deploying as Source To Image Application</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that the application code is working, we&#8217;re ready to build it as a container image, create an OpenShift deployment, and have it running as a service you will be able to call from any other application.</p>
+</div>
+<div class="paragraph">
+<p>This repository was created as a source to image Python application.  A Python application developer and a data scientist can work together in this repository to create the buildable application.  You can see the template <a href="https://github.com/opendatahub-io/odh-s2i-project-simple">GitHub repository</a> and try for yourself.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Some interesting files to examine in the application</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/rh-aiservices-bu/object-detection-rest/blob/master/wsgi.py">wsgi.py</a> - the main entrypoint for the python application and calls the prediction function.</p>
+</li>
+<li>
+<p><a href="https://github.com/rh-aiservices-bu/object-detection-rest/blob/master/prediction.py">prediction.py</a> -which contains the function the data scientist has extracted to make predictions.  Called from the application with a dictionary parameter.</p>
+</li>
+<li>
+<p><a href="https://github.com/rh-aiservices-bu/object-detection-rest/blob/master/requirements.txt">requirements.txt</a> - where both the app developer and data scientists add their python dependencies for the served application.</p>
+</li>
+<li>
+<p><a href="https://github.com/rh-aiservices-bu/object-detection-rest/tree/master/.s2i">s2i directory</a> - which contains files to customize the application deployment</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>You can also learn more about <a href="https://access.redhat.com/documentation/en-us/red_hat_software_collections/2/html/using_red_hat_software_collections_container_images/sti">Source to Image</a> and the <a href="https://github.com/sclorg/s2i-python-container">Python builder image</a>:</p>
+</div>
+<div class="paragraph">
+<p>Now, let&#8217;s create the application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_an_application_from_git"><a class="anchor" href="#_add_an_application_from_git"></a>Add an Application from Git</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Open your OpenShift UI and switch to the developer view from the menu on the top left:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/dev-view.png" alt="alt text">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Make sure you have selected the correct project for your application:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/select-project.png" alt="alt text" width="640">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>From the <code>+Add</code> menu, click on the <code>From Git</code> tile:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/from-git.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_the_application"><a class="anchor" href="#_configure_the_application"></a>Configure the Application</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_set_the_git_repo"><a class="anchor" href="#_set_the_git_repo"></a>Set the Git Repo</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>In the <code>Git Repo URL</code> field, enter: <code>https://github.com/rh-aiservices-bu/object-detection-rest.git</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://github.com/rh-aiservices-bu/object-detection-rest.git</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/git-repo.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Leave the other builder image selection to the default. You will see that OpenShift automatically recognized that our repo contains Python code, and that the right base image has been selected. Pretty neat, eh?!</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/builder.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_customize_the_app_names"><a class="anchor" href="#_customize_the_app_names"></a>Customize the App Names</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Let&#8217;s customize the name of our application.  Instead of <code>object-detection-rest-git-app</code> and <code>object-detection-rest-git</code>, let&#8217;s change the <strong>Application name</strong> to <code>object-detection</code> and the <strong>Name</strong> to  <code>object-detection-rest</code>.  Later when we call our service internally from the same project, we&#8217;ll use this name and the service port, <code><a href="http://object-detection-rest:8080" class="bare">http://object-detection-rest:8080</a></code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">object-detection</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">object-detection-rest</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/general.png" alt="alt text">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create"><a class="anchor" href="#_create"></a>Create</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>If you continue to scroll down, you will see that everything is automatically selected to create a deployment of your application, and to create a Route through which you will be able to access it. Everything is ready, so you can click on <strong>Create</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-app.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_checking_your_application"><a class="anchor" href="#_checking_your_application"></a>Checking your Application</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You will see that a build is going on:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/topology.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on the python logo in the center of the deployment to open a detail panel on the right.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/topology-rest-building.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The automated building process will take a few minutes. Some alerts (such as ImgPullBackOff) may appear while the first build is still running, but that&#8217;s OK. Then OpenShift will deploy the application (rollout).  When it&#8217;s complete you can see the build is complete and the pod is running.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/topology-rest-complete.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Once the build is complete <a href="2-02-testing-deployment.html" class="page">head to the next section.</a></p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="1-05-model-api.html">5. Serving a Model</a></span>
+  <span class="next"><a href="2-02-testing-deployment.html">2. Testing the Deployment</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

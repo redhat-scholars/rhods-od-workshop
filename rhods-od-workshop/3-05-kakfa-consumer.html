@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>3.4 Create a Kafka Consumer :: Object Detection Workshop</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/rhods-od-workshop/rhods-od-workshop/3-05-kakfa-consumer.html">
+    <link rel="prev" href="3-04-create-secret.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/rhods-od-workshop">Object Detection Workshop</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rhods-od-workshop" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">1. Notebooks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-02-jupyter-env.html">2. The Jupyter environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-03-notebooks.html">3. Notebooks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-04-object-detection.html">4. Object Detection</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-05-model-api.html">5. Serving a Model</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">2. Serving with S2I</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-02-testing-deployment.html">2. Testing the Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-03-calling-from-application.html">3. Calling from an Application</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">3. Working with Kafka</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-01-create-kafka.html">1. Create a Kafka Instance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-02-respawn-notebook.html">2. Restart a Notebook Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-03-explore-kafka.html">3. Explore Kafka in a Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-04-create-secret.html">4. Create a Secret to Connect</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="3-05-kakfa-consumer.html">5. Deploy a Kafka Consumer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Object Detection Workshop</a></li>
+    <li>3. Working with Kafka</li>
+    <li><a href="3-05-kakfa-consumer.html">5. Deploy a Kafka Consumer</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/rhods-od-workshop/edit/master/documentation/modules/ROOT/pages/3-05-kakfa-consumer.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">3.4 Create a Kafka Consumer</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the same way we created our REST service, we can create our Kafka consumer application from git.  Then, we&#8217;ll add our Kafka connection using our secret just like we did before.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_an_application_from_git"><a class="anchor" href="#_add_an_application_from_git"></a>Add an Application from Git</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before you begin, make sure you&#8217;re in the developer view and in the right project.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/dev-view.png" alt="alt text">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/select-project.png" alt="alt text" width="640">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>From the <code>+Add</code> menu, click on the <code>From Git</code> tile:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/from-git.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_the_application"><a class="anchor" href="#_configure_the_application"></a>Configure the Application</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_set_the_git_repo"><a class="anchor" href="#_set_the_git_repo"></a>Set the Git Repo</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Git Repo URL</code>field, enter: <code>https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git</code>. Make sure you&#8217;re deploying the <code>object-detection-<strong>kafka-consumer</strong></code>. It should automatically choose the Python builder image.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/create-consumer-git.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_set_the_app_name"><a class="anchor" href="#_set_the_app_name"></a>Set the App Name</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>By default, our new deployment will be added to the existing application <code>object-detection</code> we created during our previous app.  We can leave that as is.  We can change the <strong>Name</strong> to  <code>object-detection-kafka-consumer</code> if desired. Leave the default resource as <strong>Deployment</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/create-consumer-general.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remove_the_route"><a class="anchor" href="#_remove_the_route"></a>Remove the Route</h3>
+<div class="paragraph">
+<p>The Kafka consumer does not need to be exposed externally and does not serve any information.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Under <strong>Advanced Options</strong>, uncheck <strong>Create a route to the Application</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/create-consumer-advanced.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create"><a class="anchor" href="#_create"></a>Create</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Scroll down and click on <strong>Create</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/create-button.png" alt="alt text">
+</div>
+</div>
+<div class="paragraph">
+<p>Your new Kafka consumer should be created and is currently building.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/create-consumer-building.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_the_secret_to_the_kafka_consumer"><a class="anchor" href="#_add_the_secret_to_the_kafka_consumer"></a>Add the Secret to the Kafka Consumer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While the application is building, we can add the secret to the deployment. Then it can connect to the Kafka instance and topic and process messages.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate to Secrets</p>
+</li>
+<li>
+<p>Find and Select the secret with your Kafka connection information.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/secret-select.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click <strong>Add Secret to workload</strong></p>
+</li>
+<li>
+<p>Select <strong>object-detection-kafka-consumer</strong> deployment as the workload.</p>
+</li>
+<li>
+<p>Click <strong>Save</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/secret-add-to-consumer.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll be redirected to your application.  It will redeploy a new pod to pick up the changes.  You can examine the <strong>Environment</strong> tab to confirm it was added.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_your_streaming_application"><a class="anchor" href="#_testing_your_streaming_application"></a>Testing your Streaming Application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the application is built and the front-end application and kafka consumer are sending and receiving messages, you can test out your application.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate to the <strong>Topology</strong> for your project.</p>
+</li>
+<li>
+<p>Select your front-end application deployment</p>
+</li>
+<li>
+<p>Click on the <strong>Route</strong> at the bottom of the detail page</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/topology-final.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Select the video icon on the application.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/app-screenshot-2.png" alt="alt text" width="360">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Try it out!</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="3-04-create-secret.html">4. Create a Secret to Connect</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

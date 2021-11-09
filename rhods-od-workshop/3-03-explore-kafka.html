@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>3.3 Exploring Kafka from Jupyter Notebooks :: Object Detection Workshop</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/rhods-od-workshop/rhods-od-workshop/3-03-explore-kafka.html">
+    <link rel="prev" href="3-02-respawn-notebook.html">
+    <link rel="next" href="3-04-create-secret.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/rhods-od-workshop">Object Detection Workshop</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rhods-od-workshop" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">1. Notebooks</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-02-jupyter-env.html">2. The Jupyter environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-03-notebooks.html">3. Notebooks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-04-object-detection.html">4. Object Detection</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1-05-model-api.html">5. Serving a Model</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">2. Serving with S2I</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-02-testing-deployment.html">2. Testing the Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2-03-calling-from-application.html">3. Calling from an Application</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">3. Working with Kafka</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-01-create-kafka.html">1. Create a Kafka Instance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-02-respawn-notebook.html">2. Restart a Notebook Server</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="3-03-explore-kafka.html">3. Explore Kafka in a Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-04-create-secret.html">4. Create a Secret to Connect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3-05-kakfa-consumer.html">5. Deploy a Kafka Consumer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Object Detection Workshop</a></li>
+    <li>3. Working with Kafka</li>
+    <li><a href="3-03-explore-kafka.html">3. Explore Kafka in a Notebook</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/rhods-od-workshop/edit/master/documentation/modules/ROOT/pages/3-03-explore-kafka.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">3.3 Exploring Kafka from Jupyter Notebooks</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Hopefully, you&#8217;re now back in a Jupyter notebook with all the necessary information you need to connect to Kafka. Just like before let&#8217;s clone a git repo and bring in some sample code.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_clone_the_git_repository"><a class="anchor" href="#_clone_the_git_repository"></a>Clone the Git Repository</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Select the root source directory to make sure you clone the git repository at the correct location.  To do this click on the folder icon in the displayed filepath in the file browser.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-nav-base.png" alt="alt text" width="360">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the left toolbar, click on the Git icon:</p>
+</li>
+<li>
+<p>Then click on <strong>Clone a Repository</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-git-clone.png" alt="alt text" width="360">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enter the git <strong>https</strong> URL, <code><a href="https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git" class="bare">https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git</a></code>, then click <strong>CLONE</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-git-repo.png" alt="alt text" width="360">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Select the newly created folder, <code>object-detection-kafka-consumer</code> and double click to browse.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-nav-select.png" alt="alt text" width="360">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-nav-folder.png" alt="alt text" width="360">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_explore_the_notebooks"><a class="anchor" href="#_explore_the_notebooks"></a>Explore the Notebooks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now&#8217;s you can try out Kafka in an interactive environment.  Two notebooks have been created for you to experiment with.  Feel free to check out the Kafka <a href="https://kafka.apache.org/documentation/">documentation</a> and the <code>kafka-python</code> <a href="https://kafka-python.readthedocs.io/">docs</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>1_kafka_consumer.ipynb</strong> - A sample <a href="https://kafka-python.readthedocs.io/en/master/apidoc/KafkaConsumer.html">consumer</a>. Start here and leave the last cell running while you try out the next notebook.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-consumer-before.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>2_kafka_producer.ipynb</strong> - A sample <a href="https://kafka-python.readthedocs.io/en/master/apidoc/KafkaProducer.html">producer</a>.  Run this file to send messages you can consume.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-producer.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Back to <strong>1_kafka_consumer.ipynb</strong> - observe the messages consumed</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-consumer-after.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Stop the kernel in <strong>both</strong> notebooks.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-stop.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exploring_the_kafka_consumer_app"><a class="anchor" href="#_exploring_the_kafka_consumer_app"></a>Exploring the Kafka Consumer App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the next section, we&#8217;ll turn our git repo into a new application.  Before we do, let&#8217;s stop to examine the application files.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open the <code>prediction.py</code> file. What&#8217;s interesting here is that there is NO difference from the rest service.  The data science prediction code did not change</p>
+</li>
+<li>
+<p>Open the <code>requirements.txt</code> file.  Again, the data science portion of the project as not changed.  What has changed is the application dependencies.  <code>flask</code> and <code>gunicorn</code> have been changed into our dependency for <code>kafka-python</code>.</p>
+</li>
+<li>
+<p>Open the <code>app.py</code> file.  This is the bulk of our change.  Our application code changed from the rest service in the <code>wsgi.py</code> to a basic Kafka consumer/producer.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When you&#8217;ve seen all you want to see, <a href="3-04-create-secret.html" class="page">head to the next section.</a></p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="3-02-respawn-notebook.html">2. Restart a Notebook Server</a></span>
+  <span class="next"><a href="3-04-create-secret.html">4. Create a Secret to Connect</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
