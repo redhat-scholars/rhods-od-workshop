@@ -3,8 +3,8 @@ runtime:
 
 site:
   title: Object Detection Workshop
-  url: https://rh-aiservices-bu.github.io/od-workshop
-  start_page: od-workshop::index.adoc
+  url: https://redhat-scholars.github.io/rhods-od-workshop
+  start_page: rhods-od-workshop::index.adoc
 
 content:
   sources:

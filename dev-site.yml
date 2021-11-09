@@ -3,8 +3,8 @@ runtime:
 
 site:
   title: Object Detection Workshop (Dev Mode)
-  url: http://localhost:3000/od-workshop/index.html
-  start_page: od-workshop::index.adoc
+  url: http://localhost:3000/rhods-od-workshop/index.html
+  start_page: rhods-od-workshop::index.adoc
 
 content:
   sources:
