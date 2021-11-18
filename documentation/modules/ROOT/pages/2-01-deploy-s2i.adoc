@@ -17,14 +17,25 @@ You can also learn more about https://access.redhat.com/documentation/en-us/red_
 
 Now, let's create the application.
 
-== Add an Application from Git
-* Open your OpenShift UI and switch to the developer view from the menu on the top left:
+== OpenShift Console
+
+We'll start from the *OpenShift Console*.
+
+image::s2i/ocp-console.png[alt text]
+
+If you're at the OpenShift Data Science Dashboard and need to navigate to the OpenShift Web Console, use the *Application Switcher* Icon in the top right of the navigation bar and click on the *OpenShift Console* menu item.
+
+image::s2i/rhods-dashboard-app-switcher.png[alt text, 400]
+
+* From the OpenShift Console and switch to the developer view from the menu on the top left if it's not already selected:
 
 image::s2i/dev-view.png[alt text]
 
-* Make sure you have selected the correct project for your application:
+* Make sure you have selected (or created) the correct project for your application:
 
 image::s2i/select-project.png[alt text, 640]
+
+== Add an Application from Git
 
 * From the `+Add` menu, click on the `From Git` tile:
 
