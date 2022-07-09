@@ -103,6 +103,25 @@ NOTE: If you named the rest services `object-detection-rest`, this value should 
 
 image::s2i/create-app-env-var.png[alt text, 800]
 
+
+=== Resource Limits
+
+This application is much smaller and can be adjusted to very small limits to preserve quota for our larger deployments.
+
+* Click on *Resource Limits*
+
+image::s2i/create-app-limits2.png[alt text]
+
+* Enter in the following values
+** CPU
+*** Request: `100 millicores`
+*** Limit: `200 millicores` (or `1 cores`)
+** Memory
+*** Request: `50 Mi`
+*** Limit: `300 Mi`
+
+image::s2i/create-app-limits-form2.png[Create app limits form, 600]
+
 === Create
 
 * Scroll down and click on *Create*:
