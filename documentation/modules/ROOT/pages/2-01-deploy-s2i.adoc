@@ -21,25 +21,25 @@ Now, let's create the application.
 
 We'll start from the *OpenShift Console*.
 
-image::s2i/ocp-console.png[alt text]
+image::s2i/ocp-console.png[Ocp Console]
 
 If you're at the OpenShift Data Science Dashboard and need to navigate to the OpenShift Web Console, use the *Application Switcher* Icon in the top right of the navigation bar and click on the *OpenShift Console* menu item.
 
-image::s2i/rhods-dashboard-app-switcher.png[alt text, 400]
+image::s2i/rhods-dashboard-app-switcher.png[RHODS Dashboard App Switcher, 400]
 
 * From the OpenShift Console and switch to the developer view from the menu on the top left if it's not already selected:
 
-image::s2i/dev-view.png[alt text]
+image::s2i/dev-view.png[Developer View]
 
 * Make sure you have selected (or created) the correct project for your application:
 
-image::s2i/select-project.png[alt text, 640]
+image::s2i/select-project.png[Select Project, 640]
 
 == Add an Application from Git
 
 * From the `+Add` menu, click on the `From Git` tile:
 
-image::s2i/from-git.png[alt text, 800]
+image::s2i/from-git.png[Add from git, 800]
 
 == Configure the Application
 
@@ -54,11 +54,11 @@ image::s2i/from-git.png[alt text, 800]
 https://github.com/rh-aiservices-bu/object-detection-rest.git
 ----
 
-image::s2i/git-repo.png[alt text, 800]
+image::s2i/git-repo.png[Git Repo Input, 800]
 
 * Leave the other builder image selection to the default. You will see that OpenShift automatically recognized that our repo contains Python code, and that the right base image has been selected. Pretty neat, eh?!
 
-image::s2i/builder.png[alt text, 800]
+image::s2i/builder.png[Builder Image, 800]
 
 === Customize the App Names
 
@@ -79,13 +79,46 @@ object-detection
 object-detection-rest
 ----
 
-image::s2i/general.png[alt text]
+image::s2i/general.png[General Options]
 
-=== Create
+=== Deployment and Route
 
-* If you continue to scroll down, you will see that everything is automatically selected to create a deployment of your application, and to create a Route through which you will be able to access it. Everything is ready, so you can click on *Create*:
+* If you continue to scroll down, you will see that options are automatically selected to create a deployment of your application, and to create a Route through which you will be able to access it.  These are good choices for our served model, so you can leave those as selected.
 
-image::s2i/create-app.png[alt text, 800]
+=== Resource Limits
+
+As TensorFlow models require significant memory and cpu, it is a best practice to set the deployment resource limits to something that will give enough resources.  
+
+* Click on *Resource Limits*
+
+image::s2i/create-app-limits.png[Create app limits]
+
+* Enter in the following values
+** CPU
+*** Request: `100 millicores`
+*** Limit: `1000 millicores` (or `1 cores`)
+** Memory
+*** Request: `2200 Mi` 
+*** Limit: `2200 Mi`
+
+image::s2i/create-app-limits-form.png[Create app limits form, 600]
+
+[CAUTION]
+.Troubleshooting Memory Issues
+====
+Instead of receiving OOMKill on the OpenShift pod, the application will not start correctly.  If the memory limit is too low, Gunicorn will kill the worker process that is taking up too much memory as a runaway.  This will result in messages in the log that look like:
+```
+[2022-07-07 16:20:01 +0000] [1] [WARNING] Worker with pid 2135 was terminated due to signal 9
+[2022-07-07 16:20:01 +0000] [2144] [INFO] Booting worker with pid: 2144
+```
+In these cases it's recommended to increase your deployment's memory limit.
+====
+
+=== Create 
+
+Everything is ready, so you can click on *Create*:
+
+image::s2i/create-button.png[alt text]
 
 == Checking your Application
 

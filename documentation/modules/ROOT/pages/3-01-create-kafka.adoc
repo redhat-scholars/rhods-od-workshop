@@ -180,4 +180,4 @@ Now, before we leave, you should have the following securely recorded:
 ** objects
 ** notebook-test
 
-xref:3-02-explore-kafka.adoc[head to the next section.]
+xref:3-02-respawn-notebook.adoc[head to the next section.]

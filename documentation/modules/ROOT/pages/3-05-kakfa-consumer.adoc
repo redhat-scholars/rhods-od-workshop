@@ -44,6 +44,25 @@ The Kafka consumer does not need to be exposed externally and does not serve any
 
 image::kafka/create-consumer-advanced.png[alt text, 800]
 
+=== Resource Limits
+
+We'll have to increase the resource limits for the TensorFlow model.
+
+* Click on *Resource Limits*
+
+image::s2i/create-app-limits2.png[Click resource limits]
+
+* Enter in the following values
+** CPU
+*** Request: `500 millicores`
+*** Limit: `1000 millicores` (or `1 cores`)
+** Memory
+*** Request: `2200 Mi`
+*** Limit: `2200 Mi`
+
+image::s2i/create-app-limits-form3.png[Create app limits form, 600]
+ 
+
 === Create
 
 * Scroll down and click on *Create*:
