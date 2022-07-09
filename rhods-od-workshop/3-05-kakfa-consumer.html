@@ -6,7 +6,7 @@
     <title>3.4 Create a Kafka Consumer :: Object Detection Workshop</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/rhods-od-workshop/rhods-od-workshop/3-05-kakfa-consumer.html">
     <link rel="prev" href="3-04-create-secret.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
   <body class="article">
@@ -221,6 +221,66 @@
 <div class="imageblock">
 <div class="content">
 <img src="_images/kafka/create-consumer-advanced.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resource_limits"><a class="anchor" href="#_resource_limits"></a>Resource Limits</h3>
+<div class="paragraph">
+<p>We&#8217;ll have to increase the resource limits for the TensorFlow model.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Resource Limits</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-app-limits2.png" alt="Click resource limits">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enter in the following values</p>
+<div class="ulist">
+<ul>
+<li>
+<p>CPU</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Request: <code>500 millicores</code></p>
+</li>
+<li>
+<p>Limit: <code>1000 millicores</code> (or <code>1 cores</code>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Memory</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Request: <code>2200 Mi</code></p>
+</li>
+<li>
+<p>Limit: <code>2200 Mi</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-app-limits-form3.png" alt="Create app limits form" width="600">
 </div>
 </div>
 </div>

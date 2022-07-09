@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://redhat-scholars.github.io/rhods-od-workshop/rhods-od-workshop/2-03-calling-from-application.html">
     <link rel="prev" href="2-02-testing-deployment.html">
     <link rel="next" href="3-01-create-kafka.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
   <body class="article">
@@ -373,6 +373,66 @@ If you named the rest services <code>object-detection-rest</code>, this value sh
 </div>
 </div>
 <div class="sect2">
+<h3 id="_resource_limits"><a class="anchor" href="#_resource_limits"></a>Resource Limits</h3>
+<div class="paragraph">
+<p>This application is much smaller and can be adjusted to very small limits to preserve quota for our larger deployments.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Resource Limits</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-app-limits2.png" alt="alt text">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enter in the following values</p>
+<div class="ulist">
+<ul>
+<li>
+<p>CPU</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Request: <code>100 millicores</code></p>
+</li>
+<li>
+<p>Limit: <code>200 millicores</code> (or <code>1 cores</code>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Memory</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Request: <code>50 Mi</code></p>
+</li>
+<li>
+<p>Limit: <code>300 Mi</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-app-limits-form2.png" alt="Create app limits form" width="600">
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_create"><a class="anchor" href="#_create"></a>Create</h3>
 <div class="ulist">
 <ul>
@@ -417,7 +477,7 @@ If you named the rest services <code>object-detection-rest</code>, this value sh
 </div>
 </div>
 <div class="paragraph">
-<p>Next, we can explore working with streaming data.  <a href="3-01-create-kafka.html" class="page">Head to the next section.</a></p>
+<p>Next, we can explore working with streaming data.  <a href="3-01-create-kafka.html" class="xref page">Head to the next section.</a></p>
 </div>
 </div>
 </div>

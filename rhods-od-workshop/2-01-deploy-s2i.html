@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://redhat-scholars.github.io/rhods-od-workshop/rhods-od-workshop/2-01-deploy-s2i.html">
     <link rel="prev" href="1-05-model-api.html">
     <link rel="next" href="2-02-testing-deployment.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
   <body class="article">
@@ -179,7 +179,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/s2i/ocp-console.png" alt="alt text">
+<img src="_images/s2i/ocp-console.png" alt="Ocp Console">
 </div>
 </div>
 <div class="paragraph">
@@ -187,7 +187,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/s2i/rhods-dashboard-app-switcher.png" alt="alt text" width="400">
+<img src="_images/s2i/rhods-dashboard-app-switcher.png" alt="RHODS Dashboard App Switcher" width="400">
 </div>
 </div>
 <div class="ulist">
@@ -199,7 +199,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/s2i/dev-view.png" alt="alt text">
+<img src="_images/s2i/dev-view.png" alt="Developer View">
 </div>
 </div>
 <div class="ulist">
@@ -211,7 +211,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/s2i/select-project.png" alt="alt text" width="640">
+<img src="_images/s2i/select-project.png" alt="Select Project" width="640">
 </div>
 </div>
 </div>
@@ -228,7 +228,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/s2i/from-git.png" alt="alt text" width="800">
+<img src="_images/s2i/from-git.png" alt="Add from git" width="800">
 </div>
 </div>
 </div>
@@ -252,7 +252,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/s2i/git-repo.png" alt="alt text" width="800">
+<img src="_images/s2i/git-repo.png" alt="Git Repo Input" width="800">
 </div>
 </div>
 <div class="ulist">
@@ -264,7 +264,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/s2i/builder.png" alt="alt text" width="800">
+<img src="_images/s2i/builder.png" alt="Builder Image" width="800">
 </div>
 </div>
 </div>
@@ -289,22 +289,112 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/s2i/general.png" alt="alt text">
+<img src="_images/s2i/general.png" alt="General Options">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_create"><a class="anchor" href="#_create"></a>Create</h3>
+<h3 id="_deployment_and_route"><a class="anchor" href="#_deployment_and_route"></a>Deployment and Route</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>If you continue to scroll down, you will see that everything is automatically selected to create a deployment of your application, and to create a Route through which you will be able to access it. Everything is ready, so you can click on <strong>Create</strong>:</p>
+<p>If you continue to scroll down, you will see that options are automatically selected to create a deployment of your application, and to create a Route through which you will be able to access it.  These are good choices for our served model, so you can leave those as selected.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resource_limits"><a class="anchor" href="#_resource_limits"></a>Resource Limits</h3>
+<div class="paragraph">
+<p>As TensorFlow models require significant memory and cpu, it is a best practice to set the deployment resource limits to something that will give enough resources.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <strong>Resource Limits</strong></p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/s2i/create-app.png" alt="alt text" width="800">
+<img src="_images/s2i/create-app-limits.png" alt="Create app limits">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enter in the following values</p>
+<div class="ulist">
+<ul>
+<li>
+<p>CPU</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Request: <code>100 millicores</code></p>
+</li>
+<li>
+<p>Limit: <code>1000 millicores</code> (or <code>1 cores</code>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Memory</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Request: <code>2200 Mi</code></p>
+</li>
+<li>
+<p>Limit: <code>2200 Mi</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-app-limits-form.png" alt="Create app limits form" width="600">
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="title">Troubleshooting Memory Issues</div>
+<div class="paragraph">
+<p>Instead of receiving OOMKill on the OpenShift pod, the application will not start correctly.  If the memory limit is too low, Gunicorn will kill the worker process that is taking up too much memory as a runaway.  This will result in messages in the log that look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[2022-07-07 16:20:01 +0000] [1] [WARNING] Worker with pid 2135 was terminated due to signal 9
+[2022-07-07 16:20:01 +0000] [2144] [INFO] Booting worker with pid: 2144</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In these cases it&#8217;s recommended to increase your deployment&#8217;s memory limit.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create"><a class="anchor" href="#_create"></a>Create</h3>
+<div class="paragraph">
+<p>Everything is ready, so you can click on <strong>Create</strong>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/s2i/create-button.png" alt="alt text">
 </div>
 </div>
 </div>
@@ -350,7 +440,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Once the build is complete <a href="2-02-testing-deployment.html" class="page">head to the next section.</a></p>
+<p>Once the build is complete <a href="2-02-testing-deployment.html" class="xref page">head to the next section.</a></p>
 </div>
 </div>
 </div>
