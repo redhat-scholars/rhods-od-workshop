@@ -58,9 +58,9 @@ image::s2i/create-app-limits2.png[Click resource limits]
 *** Limit: `1000 millicores` (or `1 cores`)
 ** Memory
 *** Request: `2200 Mi`
-*** Limit: `2200 Mi`
+*** Limit: `3000 Mi`
 
-image::s2i/create-app-limits-form3.png[Create app limits form, 600]
+image::s2i/create-app-limits-form.png[Create app limits form, 600]
  
 
 === Create
