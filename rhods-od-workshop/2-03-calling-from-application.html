@@ -262,55 +262,6 @@ You can also call the service from elsewhere on your cluster, including your Jup
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configure_a_secure_route"><a class="anchor" href="#_configure_a_secure_route"></a>Configure a Secure Route</h3>
-<div class="paragraph">
-<p>Our application will access device cameras, so it will require a secure, https route.  We need to configure this application to use a secure route for access.</p>
-</div>
-<div class="paragraph">
-<p>We can leave the default resource as <strong>Deployment</strong>, but we need to configure some other options.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Under <strong>Advanced Options</strong>, open the <strong>Show advanced Routing options</strong>.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/s2i/create-app-route.png" alt="alt text" width="800">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Set the route options</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Under <strong>Security</strong>, select <strong>Secure Route</strong>.</p>
-</li>
-<li>
-<p>For <strong>TLS termination</strong>, choose <strong>Edge</strong>.</p>
-</li>
-<li>
-<p>For <strong>Insecure traffic</strong>, choose <strong>Redirect</strong>.</p>
-</li>
-<li>
-<p>Leave the other advanced routing fields as they are.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/s2i/create-app-route-adv.png" alt="alt text" width="800">
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_configure_the_deployment_environment_variables"><a class="anchor" href="#_configure_the_deployment_environment_variables"></a>Configure the Deployment Environment Variables</h3>
 <div class="paragraph">
 <p>The application needs to know where to send its images for predictions. Earlier, we confirmed the service URL of the <code>object-detection-rest</code> deployment.  We&#8217;ll use that value and add <code>/predictions</code>.  This will tell our front end application where to send the images by setting the variable <code>OBJECT_DETECTION_URL</code> to <code><a href="http://&lt;service-name&gt;:&lt;service-port/predictions" class="bare">http://&lt;service-name&gt;:&lt;service-port/predictions</a></code>.</p>
@@ -369,66 +320,6 @@ If you named the rest services <code>object-detection-rest</code>, this value sh
 <div class="imageblock">
 <div class="content">
 <img src="_images/s2i/create-app-env-var.png" alt="alt text" width="800">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_resource_limits"><a class="anchor" href="#_resource_limits"></a>Resource Limits</h3>
-<div class="paragraph">
-<p>This application is much smaller and can be adjusted to very small limits to preserve quota for our larger deployments.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Click on <strong>Resource Limits</strong></p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/s2i/create-app-limits2.png" alt="alt text">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Enter in the following values</p>
-<div class="ulist">
-<ul>
-<li>
-<p>CPU</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Request: <code>100 millicores</code></p>
-</li>
-<li>
-<p>Limit: <code>200 millicores</code> (or <code>1 cores</code>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Memory</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Request: <code>50 Mi</code></p>
-</li>
-<li>
-<p>Limit: <code>300 Mi</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/s2i/create-app-limits-form2.png" alt="Create app limits form" width="600">
 </div>
 </div>
 </div>
