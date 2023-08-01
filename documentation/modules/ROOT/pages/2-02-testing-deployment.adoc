@@ -16,7 +16,7 @@ image::s2i/app-status.png[alt text, 800]
 
 == Sample Request
 
-NOTE:  as our prediction function is waiting for a json payload with a base64 encoded image, we must do this encoding first.
+NOTE:  As our prediction function is waiting for a json payload with a base64 encoded image, we must do this encoding first.
 
 * Open the notebook named `04_test_flask.ipynb`
 * Upload an image in your environment

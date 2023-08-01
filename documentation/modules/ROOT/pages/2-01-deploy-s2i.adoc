@@ -4,22 +4,18 @@ include::_attributes.adoc[]
 
 Now that the application code is working, we're ready to build it as a container image, create an OpenShift deployment, and have it running as a service you will be able to call from any other application.
 
-This repository was created as a source to image Python application.  A Python application developer and a data scientist can work together in this repository to create the buildable application.  You can see the template https://github.com/opendatahub-io/odh-s2i-project-simple[GitHub repository] and try for yourself.
-
-Some interesting files to examine in the application::
+This repository was created as a source to image Python application. A Python application developer and a data scientist can work together in this repository to create the buildable application.  You can see the template https://github.com/opendatahub-io/odh-s2i-project-simple[GitHub repository] and try for yourself. Here's some interesting files to examine in the application:
 
 * https://github.com/rh-aiservices-bu/object-detection-rest/blob/master/wsgi.py[wsgi.py] - the main entrypoint for the python application and calls the prediction function.
 * https://github.com/rh-aiservices-bu/object-detection-rest/blob/master/prediction.py[prediction.py] -which contains the function the data scientist has extracted to make predictions.  Called from the application with a dictionary parameter.
 * https://github.com/rh-aiservices-bu/object-detection-rest/blob/master/requirements.txt[requirements.txt] - where both the app developer and data scientists add their python dependencies for the served application.
 * https://github.com/rh-aiservices-bu/object-detection-rest/tree/master/.s2i[s2i directory] - which contains files to customize the application deployment
 
-You can also learn more about https://access.redhat.com/documentation/en-us/red_hat_software_collections/2/html/using_red_hat_software_collections_container_images/sti[Source to Image] and the https://github.com/sclorg/s2i-python-container[Python builder image]:
-
-Now, let's create the application.
+You can also learn more about https://access.redhat.com/documentation/en-us/red_hat_software_collections/2/html/using_red_hat_software_collections_container_images/sti[Source to Image] and the https://github.com/sclorg/s2i-python-container[Python builder image] we'll be using. Now, let's create the application!
 
 == OpenShift Console
 
-We'll start from the *OpenShift Console*.
+We'll start from the *OpenShift Console* in the OpenShift Developer Sandbox.
 
 image::s2i/ocp-console.png[Ocp Console]
 
@@ -45,7 +41,7 @@ image::s2i/from-git.png[Add from git, 800]
 
 === Set the Git Repo
 
-* In the ``Git Repo URL`` field, enter: `+https://github.com/rh-aiservices-bu/object-detection-rest.git+`
+* In the *Git Repo URL* field, enter:
 
 [.lines_space]
 [.console-input]
@@ -56,7 +52,7 @@ https://github.com/rh-aiservices-bu/object-detection-rest.git
 
 image::s2i/git-repo.png[Git Repo Input, 800]
 
-* Leave the other builder image selection to the default. You will see that OpenShift automatically recognized that our repo contains Python code, and that the right base image has been selected. Pretty neat, eh?!
+* Leave the other builder image selection to the default. You will see that OpenShift automatically recognized that our repo contains Python code, and that the right base image has been selected. Pretty neat, eh?! To ensure compatibility with the Python version we're using, we'll also set the *Builder Image* to `3.8-ubi7` or `3.8-ubi8`.
 
 image::s2i/builder.png[Builder Image, 800]
 

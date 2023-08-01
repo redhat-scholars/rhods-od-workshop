@@ -38,7 +38,7 @@ image::s2i/from-git.png[alt text, 800]
 
 === Set the Git Repo
 
-* ``Git Repo URL``field, enter: `+https://github.com/rh-aiservices-bu/object-detection-app.git+`. Make sure you're deploying the `object-detection-*app*`, not the "rest" repo. If you've entered the correct repository, the Node.js builder image will be selected since this front end application was written in Node.js.
+* In the *Git Repo URL* field, enter:
 
 [.lines_space]
 [.console-input]
@@ -47,7 +47,11 @@ image::s2i/from-git.png[alt text, 800]
 https://github.com/rh-aiservices-bu/object-detection-app.git
 ----
 
+Make sure you're deploying the `object-detection-*app*`, not the "rest" repo. If you've entered the correct repository, the Node.js builder image will be selected since this front end application was written in Node.js.
+
 image::s2i/git-repo-app.png[alt text, 800]
+
+In addition, to ensure compatibility, ensure the builder image is `14-ubi7` or `14-ubi8`.
 
 === Set the App Name
 
