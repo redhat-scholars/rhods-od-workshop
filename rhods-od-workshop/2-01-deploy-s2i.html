@@ -52,8 +52,11 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Workshop Summary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">1. Notebooks</span>
+    <span class="nav-text">1. JuypterHub</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a>
@@ -74,7 +77,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">2. Serving with S2I</span>
+    <span class="nav-text">2. Deploying to OpenShift</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a>
@@ -123,7 +126,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Object Detection Workshop</a></li>
-    <li>2. Serving with S2I</li>
+    <li>2. Deploying to OpenShift</li>
     <li><a href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a></li>
   </ul>
 </nav>
@@ -138,12 +141,8 @@
 <p>Now that the application code is working, we&#8217;re ready to build it as a container image, create an OpenShift deployment, and have it running as a service you will be able to call from any other application.</p>
 </div>
 <div class="paragraph">
-<p>This repository was created as a source to image Python application.  A Python application developer and a data scientist can work together in this repository to create the buildable application.  You can see the template <a href="https://github.com/opendatahub-io/odh-s2i-project-simple">GitHub repository</a> and try for yourself.</p>
+<p>This repository was created as a source to image Python application. A Python application developer and a data scientist can work together in this repository to create the buildable application.  You can see the template <a href="https://github.com/opendatahub-io/odh-s2i-project-simple">GitHub repository</a> and try for yourself. Here&#8217;s some interesting files to examine in the application:</p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Some interesting files to examine in the application</dt>
-<dd>
 <div class="ulist">
 <ul>
 <li>
@@ -160,14 +159,8 @@
 </li>
 </ul>
 </div>
-</dd>
-</dl>
-</div>
 <div class="paragraph">
-<p>You can also learn more about <a href="https://access.redhat.com/documentation/en-us/red_hat_software_collections/2/html/using_red_hat_software_collections_container_images/sti">Source to Image</a> and the <a href="https://github.com/sclorg/s2i-python-container">Python builder image</a>:</p>
-</div>
-<div class="paragraph">
-<p>Now, let&#8217;s create the application.</p>
+<p>You can also learn more about <a href="https://access.redhat.com/documentation/en-us/red_hat_software_collections/2/html/using_red_hat_software_collections_container_images/sti">Source to Image</a> and the <a href="https://github.com/sclorg/s2i-python-container">Python builder image</a> we&#8217;ll be using. Now, let&#8217;s create the application!</p>
 </div>
 </div>
 </div>
@@ -175,7 +168,7 @@
 <h2 id="_openshift_console"><a class="anchor" href="#_openshift_console"></a>OpenShift Console</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We&#8217;ll start from the <strong>OpenShift Console</strong>.</p>
+<p>We&#8217;ll start from the <strong>OpenShift Console</strong> in the OpenShift Developer Sandbox.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -241,7 +234,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>In the <code>Git Repo URL</code> field, enter: <code>https://github.com/rh-aiservices-bu/object-detection-rest.git</code></p>
+<p>In the <strong>Git Repo URL</strong> field, enter:</p>
 </li>
 </ul>
 </div>
@@ -258,7 +251,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Leave the other builder image selection to the default. You will see that OpenShift automatically recognized that our repo contains Python code, and that the right base image has been selected. Pretty neat, eh?!</p>
+<p>Leave the other builder image selection to the default. You will see that OpenShift automatically recognized that our repo contains Python code, and that the right base image has been selected. Pretty neat, eh?! To ensure compatibility with the Python version we&#8217;re using, we&#8217;ll also set the <strong>Builder Image</strong> to <code>3.8-ubi7</code> or <code>3.8-ubi8</code>.</p>
 </li>
 </ul>
 </div>

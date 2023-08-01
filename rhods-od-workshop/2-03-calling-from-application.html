@@ -52,8 +52,11 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Workshop Summary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">1. Notebooks</span>
+    <span class="nav-text">1. JuypterHub</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a>
@@ -74,7 +77,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">2. Serving with S2I</span>
+    <span class="nav-text">2. Deploying to OpenShift</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a>
@@ -123,7 +126,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Object Detection Workshop</a></li>
-    <li>2. Serving with S2I</li>
+    <li>2. Deploying to OpenShift</li>
     <li><a href="2-03-calling-from-application.html">3. Calling from an Application</a></li>
   </ul>
 </nav>
@@ -231,7 +234,7 @@ You can also call the service from elsewhere on your cluster, including your Jup
 <div class="ulist">
 <ul>
 <li>
-<p><code>Git Repo URL</code>field, enter: <code>https://github.com/rh-aiservices-bu/object-detection-app.git</code>. Make sure you&#8217;re deploying the <code>object-detection-<strong>app</strong></code>, not the "rest" repo. If you&#8217;ve entered the correct repository, the Node.js builder image will be selected since this front end application was written in Node.js.</p>
+<p>In the <strong>Git Repo URL</strong> field, enter:</p>
 </li>
 </ul>
 </div>
@@ -240,10 +243,16 @@ You can also call the service from elsewhere on your cluster, including your Jup
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://github.com/rh-aiservices-bu/object-detection-app.git</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Make sure you&#8217;re deploying the <code>object-detection-<strong>app</strong></code>, not the "rest" repo. If you&#8217;ve entered the correct repository, the Node.js builder image will be selected since this front end application was written in Node.js.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/s2i/git-repo-app.png" alt="alt text" width="800">
 </div>
+</div>
+<div class="paragraph">
+<p>In addition, to ensure compatibility, ensure the builder image is <code>14-ubi7</code> or <code>14-ubi8</code>.</p>
 </div>
 </div>
 <div class="sect2">

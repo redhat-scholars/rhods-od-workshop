@@ -52,8 +52,11 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Workshop Summary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">1. Notebooks</span>
+    <span class="nav-text">1. JuypterHub</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a>
@@ -74,7 +77,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">2. Serving with S2I</span>
+    <span class="nav-text">2. Deploying to OpenShift</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="2-01-deploy-s2i.html">1. Deploy with Source to Image</a>
@@ -123,7 +126,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Object Detection Workshop</a></li>
-    <li>1. Notebooks</li>
+    <li>1. JuypterHub</li>
     <li><a href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a></li>
   </ul>
 </nav>
@@ -132,23 +135,27 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">1.1 Starting a Jupyter environment</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="index.html" class="xref page">Back to the introduction</a></p>
-</div>
-</div>
-</div>
 <div class="sect1">
 <h2 id="_the_openshift_data_science_dashboard"><a class="anchor" href="#_the_openshift_data_science_dashboard"></a>The OpenShift Data Science Dashboard</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You should be logged into <strong>Red Hat OpenShift Data Science</strong>, and be able to see the dashboard, that looks like this:</p>
+<p>After logging into the OpenShift Web Console, you should see the OpenShift Data Science Dashboard as a tile in the top right-hand corner. You&#8217;ll be prompted to log in to the OpenShift Data Science Dashboard using the Developer Sandbox authentication.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/notebooks/ocp-console-ds-tile.png" alt="Data Science Dashboard tile">
+</div>
+</div>
+<div class="paragraph">
+<p>At the OpenShift Data Science Dashboard, you can see the status of any existing environments you have running, as well as launch new environments.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/notebooks/dashboard.png" alt="alt text">
 </div>
+</div>
+<div class="paragraph">
+<p><strong>Red Hat OpenShift Data Science</strong> brings you on-demand Jupyter Notebook environments. Don&#8217;t worry if you&#8217;ve never used notebooks before as this workshop will start with a small tutorial on what they are and how to use them.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -162,20 +169,8 @@ If you&#8217;re at the OpenShift Web Console and need to navigate back to the Op
 </tr>
 </table>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/notebooks/ocp-console-app-switcher.png" alt="alt text" width="400">
-</div>
-</div>
 <div class="paragraph">
-<p><strong>Red Hat OpenShift Data Science</strong> brings you on-demand Jupyter Notebook environments. Don&#8217;t worry if you&#8217;ve never used notebooks before as this workshop will start with a small tutorial on what they are and how to use them.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
 <p>Now that you are logged into to <strong>Red Hat OpenShift Data Science</strong>, click on the "Launch" link on the JupyterHub card:</p>
-</li>
-</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -185,13 +180,10 @@ If you&#8217;re at the OpenShift Web Console and need to navigate back to the Op
 </div>
 </div>
 <div class="sect1">
-<h2 id="_juptyerhub"><a class="anchor" href="#_juptyerhub"></a>JuptyerHub</h2>
+<h2 id="_launching_juptyerhub"><a class="anchor" href="#_launching_juptyerhub"></a>Launching JuptyerHub</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If it&#8217;s the first time you&#8217;re launching Jupyter, you will be sent to a page that will require you to login and ask for your authorization to use your user account to authenticate to Jupyter. You should of course allow this if you want to do the workshop&#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>Once you have authorized access, you will be taken to the JupyterHub "Spawner Options" page.</p>
+<p>To begin, we need to launch a JupyterHub environment. This is the environment that will host our Jupyter Notebooks. Click on the <strong>Launch</strong> link as shown before on the JupyterHub card:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -200,10 +192,11 @@ If you&#8217;re at the OpenShift Web Console and need to navigate back to the Op
 <div class="ulist">
 <ul>
 <li>
-<p>For the <strong>Notebook Image</strong> , select <strong>TensorFlow</strong> (<code>Python v3.8.6, Tensorflow v2.4.1</code>), as this is the flavor of notebook we want to use. It includes the TensorFlow library, which is used to do object detection.</p>
+<p>For the <strong>Notebook Image</strong> , select <strong>TensorFlow
+2023.1</strong> (<code>CUDA v11.8, Python v3.9, TensorFlow v2.11</code>), as this is the flavor of notebook we want to use. It includes the TensorFlow library, which is used to do object detection.</p>
 </li>
 <li>
-<p>From the <strong>Container size</strong> dropdown, select <code>Default</code>.</p>
+<p>From the <strong>Container size</strong> dropdown, select <code>Small</code>.</p>
 </li>
 <li>
 <p>At the bottom of the page you can now click on the <strong>Start Server</strong> button:</p>
@@ -219,6 +212,9 @@ If you&#8217;re at the OpenShift Web Console and need to navigate back to the Op
 </div>
 </div>
 <div class="paragraph">
+<p>It may take a few minutes for your environment to start up. Once it does, you will be taken to the JupyterHub landing page.</p>
+</div>
+<div class="paragraph">
 <p>&#160;<br></p>
 </div>
 <div class="admonitionblock important">
@@ -228,19 +224,15 @@ If you&#8217;re at the OpenShift Web Console and need to navigate back to the Op
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-If you do not pick the correct notebook image, <strong>TensorFlow</strong>, the notebooks in the following sections will fail to run since they do not have the correct Python libraries. <br>
-If you need to restart your notebook server with the correct image, you can do so from <strong>File</strong> &#8594; <strong>Hub Control Panel</strong> in the notebook environment in the next section.
+If you do not pick the correct notebook image, <strong>TensorFlow</strong>, the notebooks in the following sections will fail to run since they do not have the correct Python libraries. If you need to restart your notebook server with the correct image, you can do so from <strong>File</strong> &#8594; <strong>Hub Control Panel</strong> in the notebook environment in the next section.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>While your environment is starting,  <a href="1-02-jupyter-env.html" class="xref page">let&#8217;s go to the next section.</a></p>
-</div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="index.html">Object Detection Workshop</a></span>
+  <span class="prev"><a href="index.html">Workshop Summary</a></span>
   <span class="next"><a href="1-02-jupyter-env.html">2. The Jupyter environment</a></span>
 </nav>
 </article>
