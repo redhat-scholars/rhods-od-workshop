@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>1.2 The Jupyter environment :: Object Detection Workshop</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/rhods-od-workshop/rhods-od-workshop/1-02-jupyter-env.html">
-    <link rel="prev" href="1-01-start-jupyter.html">
-    <link rel="next" href="1-03-notebooks.html">
+    <title>3.2 Exploring Kafka from Jupyter Notebooks :: Object Detection Workshop</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/rhods-od-workshop/rhods-od-workshop/3-02-explore-kafka.html">
+    <link rel="prev" href="3-01-create-kafka.html">
+    <link rel="next" href="3-03-create-secret.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -61,7 +61,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="1-02-jupyter-env.html">2. The Jupyter environment</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -97,7 +97,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="3-01-create-kafka.html">1. Create a Kafka Instance</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="3-02-explore-kafka.html">2. Explore Kafka in a Notebook</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -126,35 +126,42 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Object Detection Workshop</a></li>
-    <li>1. JuypterHub</li>
-    <li><a href="1-02-jupyter-env.html">2. The Jupyter environment</a></li>
+    <li>3. Working with Kafka</li>
+    <li><a href="3-02-explore-kafka.html">2. Explore Kafka in a Notebook</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/rhods-od-workshop/edit/master/documentation/modules/ROOT/pages/1-02-jupyter-env.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/rhods-od-workshop/edit/master/documentation/modules/ROOT/pages/3-02-explore-kafka.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">1.2 The Jupyter environment</h1>
+<h1 class="page">3.2 Exploring Kafka from Jupyter Notebooks</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>You are now inside your Jupyter environment. As you can see, it&#8217;s a web-based environment, but everything you&#8217;ll do here is in fact happening on the <strong>Red Hat OpenShift Data Science</strong> cluster. This means that without having to install and maintain anything on your own computer, and without disposing of lots of local resources like CPU and RAM, you can still conduct your Data Science work in this powerful and stable managed environment.</p>
+<p>Let&#8217;s head back to the Jupyter notebook and explore Kafka, and ensure that the Kafka producers and consumers are working as expected. Just like before let&#8217;s clone a git repo and bring in some sample code.</p>
 </div>
-<div class="paragraph">
-<p>In the "file-browser" like window you&#8217;re in right now, you&#8217;ll find the files and folders that are saved inside your own personal space inside <strong>Red Hat OpenShift Data Science</strong>. It&#8217;s pretty empty right now though&#8230;&#8203; So the first thing we will do is to bring the content of the workshop inside this environment.</p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_clone_the_git_repository"><a class="anchor" href="#_clone_the_git_repository"></a>Clone the Git Repository</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Select the root source directory to make sure you clone the git repository at the correct location.  To do this click on the folder icon in the displayed filepath in the file browser.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-nav-base.png" alt="alt text" width="360">
+</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>On the left toolbar, click on the Git icon:</p>
 </li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/notebooks/git_icon.png" alt="alt text">
-</div>
-</div>
-<div class="ulist">
-<ul>
 <li>
 <p>Then click on <strong>Clone a Repository</strong>:</p>
 </li>
@@ -162,49 +169,128 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/notebooks/clone_repo.png" alt="alt text">
+<img src="_images/kafka/notebook-git-clone.png" alt="alt text" width="360">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Enter the <strong>Git URL</strong>, then click <strong>CLONE</strong>:</p>
+<p>Enter the Git <strong>https</strong> URL for the repository and click <strong>Clone</strong>:</p>
 </li>
 </ul>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://github.com/rh-aiservices-bu/object-detection-rest.git</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://github.com/blues-man/object-detection-kafka-consumer</code></pre>
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/notebooks/clone_start.png" alt="alt text">
+<img src="_images/kafka/notebook-git-repo.png" alt="alt text" width="360">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>It takes a few seconds, after which you can double-click and navigate to the newly-created folder, <code>object-detection-rest</code>:</p>
+<p>Select the newly created folder, <code>object-detection-kafka-consumer</code> and double click to browse.</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/notebooks/od_folder_click.png" alt="alt text">
+<img src="_images/kafka/notebook-nav-select.png" alt="alt text" width="360">
 </div>
-</div>
-<div class="paragraph">
-<p>In here, you&#8217;ve got all the files and folders that are part of the workshop. Here in a moment, we&#8217;ll start working with them.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/notebooks/od_folder.png" alt="alt text">
+<img src="_images/kafka/notebook-nav-folder.png" alt="alt text" width="360">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_explore_the_notebooks"><a class="anchor" href="#_explore_the_notebooks"></a>Explore the Notebooks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now&#8217;s you can try out Kafka in an interactive environment.  Two notebooks have been created for you to experiment with.  Feel free to check out the Kafka <a href="https://kafka.apache.org/documentation/">documentation</a> and the <code>kafka-python</code> <a href="https://kafka-python.readthedocs.io/">docs</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>1_kafka_consumer.ipynb</strong> - A sample <a href="https://kafka-python.readthedocs.io/en/master/apidoc/KafkaConsumer.html">consumer</a>. Start here and leave the last cell running while you try out the next notebook.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-consumer-before.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>2_kafka_producer.ipynb</strong> - A sample <a href="https://kafka-python.readthedocs.io/en/master/apidoc/KafkaProducer.html">producer</a>.  Run this file to send messages you can consume.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-producer.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Back to <strong>1_kafka_consumer.ipynb</strong> - observe the messages consumed</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-consumer-after.png" alt="alt text" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Stop the kernel in <strong>both</strong> notebooks.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kafka/notebook-stop.png" alt="alt text" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exploring_the_kafka_consumer_app"><a class="anchor" href="#_exploring_the_kafka_consumer_app"></a>Exploring the Kafka Consumer App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the next section, we&#8217;ll turn our git repo into a new application.  Before we do, let&#8217;s stop to examine the application files.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open the <code>prediction.py</code> file. What&#8217;s interesting here is that there is NO difference from the rest service.  The data science prediction code did not change</p>
+</li>
+<li>
+<p>Open the <code>requirements.txt</code> file.  Again, the data science portion of the project as not changed.  What has changed is the application dependencies.  <code>flask</code> and <code>gunicorn</code> have been changed into our dependency for <code>kafka-python</code>.</p>
+</li>
+<li>
+<p>Open the <code>app.py</code> file.  This is the bulk of our change.  Our application code changed from the rest service in the <code>wsgi.py</code> to a basic Kafka consumer/producer.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When you&#8217;ve seen all you want to see, <a href="3-03-create-secret.html" class="xref page">head to the next section.</a></p>
+</div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="1-01-start-jupyter.html">1. Starting a Jupyter environment</a></span>
-  <span class="next"><a href="1-03-notebooks.html">3. Notebooks</a></span>
+  <span class="prev"><a href="3-01-create-kafka.html">1. Create a Kafka Instance</a></span>
+  <span class="next"><a href="3-03-create-secret.html">3. Create a Secret to Connect</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
