@@ -1,0 +1,14 @@
+= Object Detection Workshop
+:page-layout: home
+:!sectids:
+
+image::openshift-data-science-logo.png[Red Hat OpenShift Data Science Logo, 300]
+
+Let's take a look at some free resources to help continue your AI/ML journey.
+
+[.text-center.strong]
+== Learning Paths
+
+Try out the free learning paths on the https://developers.redhat.com/products/red-hat-openshift-data-science/getting-started[Red Hat Developer site]. There's a wide range of topics from getting started with OpenShift Data Science to building and deploying models, TensorFlow, PyTorch, S3, and more.
+
+image::rhd-lp.png[Red Hat OpenShift Data Science, 900]

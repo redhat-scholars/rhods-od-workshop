@@ -20,13 +20,13 @@ image::kafka/from-git.png[alt text, 800]
 
 === Set the Git Repo
 
-* ``Git Repo URL``field, enter: `+https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git+`. Make sure you're deploying the `object-detection-*kafka-consumer*`. It should automatically choose the Python builder image.
+* In the *Git Repo URL* field, enter:
 
 [.lines_space]
 [.console-input]
 [source,text]
 ----
-https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git
+https://github.com/blues-man/object-detection-kafka-consumer
 ----
 
 image::kafka/create-consumer-git.png[alt text, 800]
@@ -109,6 +109,4 @@ image::kafka/topology-final.png[alt text, 800]
 
 image::kafka/app-screenshot-2.png[alt text, 360]
 
-* Try it out!
-
-
+Try out your application by using the webcam.  You should see the results of the object detection model and the Kafka consumer should be receiving messages in real-time! Pretty neat!

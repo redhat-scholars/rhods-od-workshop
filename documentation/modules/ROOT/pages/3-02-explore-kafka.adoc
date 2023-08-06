@@ -1,8 +1,8 @@
-= 3.3 Exploring Kafka from Jupyter Notebooks
+= 3.2 Exploring Kafka from Jupyter Notebooks
 
 include::_attributes.adoc[]
 
-Hopefully, you're now back in a Jupyter notebook with all the necessary information you need to connect to Kafka. Just like before let's clone a git repo and bring in some sample code.
+Let's head back to the Jupyter notebook and explore Kafka, and ensure that the Kafka producers and consumers are working as expected. Just like before let's clone a git repo and bring in some sample code.
 
 == Clone the Git Repository
 
@@ -16,13 +16,13 @@ image::kafka/notebook-nav-base.png[alt text, 360]
 
 image::kafka/notebook-git-clone.png[alt text, 360]
 
-* Enter the git *https* URL, `https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git`, then click *CLONE*:
+* Enter the Git *https* URL for the repository and click *Clone*:
 
 [.lines_space]
 [.console-input]
 [source,text]
 ----
-https://github.com/rh-aiservices-bu/object-detection-kafka-consumer.git
+https://github.com/blues-man/object-detection-kafka-consumer
 ----
 
 image::kafka/notebook-git-repo.png[alt text, 360]
@@ -64,5 +64,5 @@ In the next section, we'll turn our git repo into a new application.  Before we 
 
 * Open the `app.py` file.  This is the bulk of our change.  Our application code changed from the rest service in the `wsgi.py` to a basic Kafka consumer/producer.
 
-When you've seen all you want to see, xref:3-04-create-secret.adoc[head to the next section.]
+When you've seen all you want to see, xref:3-03-create-secret.adoc[head to the next section.]
 
