@@ -1,5 +1,5 @@
 * 1. xref:index.adoc[Workshop Summary]
-* 1. JuypterHub
+* 1. JupyterHub
 ** xref:1-01-start-jupyter.adoc[1. Starting a Jupyter environment]
 ** xref:1-02-jupyter-env.adoc[2. The Jupyter environment]
 ** xref:1-03-notebooks.adoc[3. Notebooks]
