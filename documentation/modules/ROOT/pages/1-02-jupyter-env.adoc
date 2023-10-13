@@ -33,4 +33,19 @@ In here, you've got all the files and folders that are part of the workshop. Her
 
 image::notebooks/od_folder.png[alt text]
 
+Before we start working with our Jupyter notebooks, let's use the Terminal feature to install a specific version of the Pillow library that is required by the Object Detection REST API.
 
+image::notebooks/od_home_terminal.png[alt text]
+
+Here, let's install Pillow 9.5.0 using the following command:
+
+[.lines_space]
+[.console-input]
+[source,text]
+----
+pip install Pillow==9.5.0
+----
+
+image::notebooks/od_install_pillow.png[alt text]
+
+Continue with the next step of the workshop to get started working with the notebooks.
